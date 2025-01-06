@@ -37,3 +37,12 @@ jobs:
       - name: Build README
         run: |
           devtools::build_readme()
+
+      - name: Run tests
+        run: |
+          install.packages('testthat')
+          testthat::test_dir('tests/testthat')
+
+      - name: Build vignettes
+        run: |
+          devtools::build_vignettes()

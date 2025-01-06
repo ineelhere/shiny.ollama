@@ -43,6 +43,19 @@ library(shiny.ollama)
 shiny.ollama::run_app()
 ```
 
+## Detailed Information on Package Functions
+
+### `run_app` Function
+
+The `run_app` function launches the Shiny app for chatting with the Ollama API.
+
+#### Example
+
+```R
+# To run the app:
+shiny.ollama::run_app()
+```
+
 ## License
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.

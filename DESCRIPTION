@@ -8,3 +8,13 @@ License: Apache License 2.0
 URL: https://github.com/ineelhere/shiny.ollama
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    shiny,
+    bslib,
+    httr,
+    jsonlite
+Depends: 
+    R (>= 3.5.0)
+Suggests: 
+    testthat,
+    pkgdown

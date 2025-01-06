@@ -12,71 +12,57 @@
 #' # shinyApp(ui = ui, server = server)
 NULL
 
-#' User Interface for the Ollama Chat App
-#'
-#' Defines the UI for the Ollama Chat application.
-#'
-#' @return A Shiny UI object.
-#' @export
-ui <- fluidPage(
-  theme = bs_theme(version = 5, bootswatch = "flatly"),
-  tags$head(
-    tags$style(HTML("
-      #chat_history {
-        max-height: 400px;
-        overflow-y: auto;
-        border: 1px solid #ccc;
-        padding: 10px;
-        border-radius: 5px;
-        background-color: #f9f9f9;
-      }
-      .user-message {
-        color: #007bff;
-        font-weight: bold;
-      }
-      .assistant-message {
-        color: #28a745;
-        font-weight: bold;
-      }
-      #send {
-        background-color: #007bff;
-        color: white;
-        border-radius: 5px;
-        border: none;
-      }
-      #send:hover {
-        background-color: #0056b3;
-      }
-    "))
-  ),
-  titlePanel("Ollama Chat"),
-  sidebarLayout(
-    sidebarPanel(
-      h4("Chat Settings"),
-      selectInput("model", "Select Model:", choices = NULL),
-      textAreaInput("message", "Type your message:", rows = 3, placeholder = "Enter your message here..."),
-      actionButton("send", "Send"),
-      hr(),
-      selectInput("download_format", "Download Format:", choices = c("HTML", "CSV")),
-      downloadButton("download_chat", "Download Chat History")
+ui <- function() {
+  fluidPage(
+    theme = bs_theme(version = 5, bootswatch = "flatly"),
+    tags$head(
+      tags$style(HTML("
+        #chat_history {
+          max-height: 400px;
+          overflow-y: auto;
+          border: 1px solid #ccc;
+          padding: 10px;
+          border-radius: 5px;
+          background-color: #f9f9f9;
+        }
+        .user-message {
+          color: #007bff;
+          font-weight: bold;
+        }
+        .assistant-message {
+          color: #28a745;
+          font-weight: bold;
+        }
+        #send {
+          background-color: #007bff;
+          color: white;
+          border-radius: 5px;
+          border: none;
+        }
+        #send:hover {
+          background-color: #0056b3;
+        }
+      "))
     ),
-    mainPanel(
-      h4("Chat History"),
-      div(id = "chat_history", htmlOutput("chat_history"))
+    titlePanel("Ollama Chat"),
+    sidebarLayout(
+      sidebarPanel(
+        h4("Chat Settings"),
+        selectInput("model", "Select Model:", choices = NULL),
+        textAreaInput("message", "Type your message:", rows = 3, placeholder = "Enter your message here..."),
+        actionButton("send", "Send"),
+        hr(),
+        selectInput("download_format", "Download Format:", choices = c("HTML", "CSV")),
+        downloadButton("download_chat", "Download Chat History")
+      ),
+      mainPanel(
+        h4("Chat History"),
+        div(id = "chat_history", htmlOutput("chat_history"))
+      )
     )
   )
-)
+}
 
-#' Server Logic for the Ollama Chat App
-#'
-#' Defines the server-side functionality for the Ollama Chat application.
-#'
-#' @param input A reactive list of inputs from the UI.
-#' @param output A reactive list for sending outputs to the UI.
-#' @param session A reactive object for managing user sessions.
-#'
-#' @return None. This function is called for its side effects.
-#' @export
 server <- function(input, output, session) {
   # Reactive value to store chat messages
   messages <- reactiveVal(list())
@@ -157,4 +143,9 @@ server <- function(input, output, session) {
 #'
 #' @return None. This function is called for its side effects.
 #' @export
-shinyApp(ui, server)
+#' @examples
+#' # To run the app:
+#' shiny.ollama::run_app()
+run_app <- function() {
+  shinyApp(ui, server)
+}

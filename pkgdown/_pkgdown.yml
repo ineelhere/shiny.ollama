@@ -1,0 +1,16 @@
+template:
+  bootstrap: 5
+
+navbar:
+  title: shiny.ollama
+  type: default
+
+reference:
+  - title: "Functions"
+    contents:
+      - starts_with("shiny.ollama")
+
+articles:
+  - title: "Get Started"
+    contents:
+      - "index"

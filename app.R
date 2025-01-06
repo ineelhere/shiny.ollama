@@ -49,7 +49,7 @@ server <- function(input, output, session) {
       body = toJSON(list(
         model = input$model,
         prompt = input$message,
-        stream = FALSE
+        stream = TRUE
       ), auto_unbox = TRUE),
       encode = "json"
     )

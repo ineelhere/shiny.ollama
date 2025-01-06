@@ -49,3 +49,6 @@ po/*~
 rsconnect/
 
 *.Rproj
+
+# shiny.ollama package-specific entries
+shiny.ollama/

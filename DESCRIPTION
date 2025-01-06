@@ -1,0 +1,9 @@
+Package: shiny.ollama
+Version: 0.1.0
+Title: Shiny Interface for Ollama
+Description: An R Shiny interface to work with LLM models on local using Ollama
+Author: Your Name [aut, cre] (<your.email@example.com>)
+Maintainer: Your Name <your.email@example.com>
+License: Apache License 2.0
+Encoding: UTF-8
+LazyData: true

@@ -1,9 +1,10 @@
 Package: shiny.ollama
 Version: 0.1.0
 Title: Shiny Interface for Ollama
-Description: An R Shiny interface to work with LLM models on local using Ollama
-Author: Your Name [aut, cre] (<your.email@example.com>)
-Maintainer: Your Name <your.email@example.com>
+Description: Provides an R Shiny interface to interact with large language models (LLMs) locally using Ollama. This package enables seamless integration of conversational AI capabilities into Shiny applications, offering an efficient and user-friendly interface for local LLM usage.
+Author: Indraneel Chakraborty [aut, cre] (<hello.indraneel@gmail.com>)
+Maintainer: Indraneel Chakraborty <hello.indraneel@gmail.com>
 License: Apache License 2.0
+URL: https://github.com/ineelhere/shiny.ollama
 Encoding: UTF-8
 LazyData: true

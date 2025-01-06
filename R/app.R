@@ -1,9 +1,23 @@
-library(shiny)
-library(bslib)
-library(httr)
-library(jsonlite)
+#' Ollama Chat Shiny App
+#'
+#' This Shiny application provides an interface for chatting with an assistant using the Ollama API.
+#'
+#' @import shiny
+#' @import bslib
+#' @import httr
+#' @import jsonlite
+#' @export
+#' @examples
+#' # To run the app:
+#' # shinyApp(ui = ui, server = server)
+NULL
 
-# UI
+#' User Interface for the Ollama Chat App
+#'
+#' Defines the UI for the Ollama Chat application.
+#'
+#' @return A Shiny UI object.
+#' @export
 ui <- fluidPage(
   theme = bs_theme(version = 5, bootswatch = "flatly"),
   tags$head(
@@ -48,15 +62,26 @@ ui <- fluidPage(
     ),
     mainPanel(
       h4("Chat History"),
-      div(id = "chat_history", htmlOutput("chat_history")) # Use htmlOutput for styled text
+      div(id = "chat_history", htmlOutput("chat_history"))
     )
   )
 )
 
-# Server
+#' Server Logic for the Ollama Chat App
+#'
+#' Defines the server-side functionality for the Ollama Chat application.
+#'
+#' @param input A reactive list of inputs from the UI.
+#' @param output A reactive list for sending outputs to the UI.
+#' @param session A reactive object for managing user sessions.
+#'
+#' @return None. This function is called for its side effects.
+#' @export
 server <- function(input, output, session) {
+  # Reactive value to store chat messages
   messages <- reactiveVal(list())
   
+  # Observe available models from the API
   observe({
     models <- tryCatch({
       response <- GET("http://localhost:11434/api/tags")
@@ -68,11 +93,12 @@ server <- function(input, output, session) {
     updateSelectInput(session, "model", choices = models)
   })
   
+  # Handle user message submission
   observeEvent(input$send, {
     req(input$message, input$model)
     current <- messages()
     
-    # Add user message and prompt to chat history
+    # Add user message to chat history
     user_msg <- sprintf("<span class='user-message'>User:</span> %s", input$message)
     messages(c(current, user_msg))
     
@@ -98,28 +124,25 @@ server <- function(input, output, session) {
     updateTextInput(session, "message", value = "")
   })
   
-  # Render chat history
+  # Render chat history in UI
   output$chat_history <- renderUI({
     HTML(paste(messages(), collapse = "<br><br>"))
   })
   
-  # Download chat history
+  # Handle chat history download
   output$download_chat <- downloadHandler(
     filename = function() {
       paste("chat_history_", Sys.Date(), ".", tolower(input$download_format), sep = "")
     },
     content = function(file) {
       chat <- messages()
-      
       if (input$download_format == "HTML") {
-        # Save as HTML
         html_content <- paste0("<html><body>", paste(chat, collapse = "<br><br>"), "</body></html>")
         writeLines(html_content, file)
       } else if (input$download_format == "CSV") {
-        # Save as CSV
         chat_data <- data.frame(
           Type = ifelse(grepl("User:", chat), "User", "Assistant"),
-          Message = gsub("<.*?>", "", chat), # Remove HTML tags
+          Message = gsub("<.*?>", "", chat),
           stringsAsFactors = FALSE
         )
         write.csv(chat_data, file, row.names = FALSE)
@@ -128,4 +151,10 @@ server <- function(input, output, session) {
   )
 }
 
+#' Run the Ollama Chat Application
+#'
+#' Launches the Shiny app for chatting with the Ollama API.
+#'
+#' @return None. This function is called for its side effects.
+#' @export
 shinyApp(ui, server)

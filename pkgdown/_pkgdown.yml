@@ -1,16 +1,80 @@
+# pkgdown configuration for the Ollama Chat Shiny app package
+
 template:
   bootstrap: 5
+  bootswatch: flatly
+  params:
+    bootswatch: flatly
+    bslib_version: 5
 
 navbar:
-  title: shiny.ollama
-  type: default
+  structure:
+    left:
+      - text: "Reference"
+        href: reference/index.html
+      - text: "Articles"
+        href: articles/index.html
+    right:
+      - text: "GitHub"
+        href: https://github.com/ineelhere/shiny.ollama/
+  components:
+    title: "Ollama Chat"
+    logo: ""
 
+# URL for the site
+url: https://ineelhere.github.io/shiny.ollama/
+
+# Customize the homepage
+home:
+  title: "Ollama Chat Shiny App"
+  description: >
+    This package provides a Shiny app for interacting with the Ollama API. Use the app to chat with an assistant and manage chat histories.
+  contents:
+    - section: start
+      rows:
+        - columns:
+            - width: 12
+              contents:
+                - text: |
+                    ### Getting Started
+                    Install the package using:
+                    ```r
+                    remotes::install_github("ineelhere/shiny.ollama")
+                    ```
+                    Launch the Shiny app:
+                    ```r
+                    library(shiny.ollama)
+                    shinyApp(ui, server)
+                    ```
+    - section: guide
+      title: "Documentation"
+      rows:
+        - columns:
+            - width: 12
+              contents:
+                - text: |
+                    Learn how to use the Ollama Chat package with the following resources:
+                    - [Reference](reference/index.html)
+                    - [Articles](articles/index.html)
+
+# Reference section
 reference:
-  - title: "Functions"
-    contents:
-      - starts_with("shiny.ollama")
+  title: "Function Reference"
+  contents:
+    - title: "Main Functions"
+      contents:
+        - ui
+        - server
+        - shinyApp
 
+# Articles section
 articles:
-  - title: "Get Started"
-    contents:
-      - "index"
+  title: "Tutorials and Articles"
+  contents:
+    - title: "Introduction to Ollama Chat"
+      href: articles/intro.html
+
+# Custom footer
+footer:
+  text: >
+    © 2025 Indraneel Chakraborty. Powered by pkgdown and Shiny.

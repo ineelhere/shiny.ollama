@@ -2,17 +2,21 @@
 % Please edit documentation in R/app.R
 \name{run_app}
 \alias{run_app}
-\title{Run Ollama Chat Shiny App}
+\title{Run Shiny Application for Chat Interface}
 \usage{
 run_app()
 }
-\value{
-A Shiny app object.
-}
 \description{
-This Shiny application provides an interface for chatting with an assistant using the Ollama API.
-It allows users to select a model, send a message to the assistant, and view the conversation history.
-The app also supports downloading the chat history in HTML or CSV formats.
+Launches a Shiny app for interacting with the Ollama API to perform text-based chat.
+The app includes options for selecting models, sending messages, viewing chat history,
+and downloading chat history in HTML or CSV format.
+}
+\details{
+The app provides a user-friendly interface with the following features:
+- Model selection from available options fetched via the API.
+- A text input for sending messages and receiving responses.
+- A display area for chat history styled with GitHub Markdown CSS.
+- Options to download the chat history in either HTML or CSV formats.
 }
 \examples{
 if (interactive()) {

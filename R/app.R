@@ -1,51 +1,68 @@
-#' Run Ollama Chat Shiny App
+#' @title Run Shiny Application for Chat Interface
+#' @description Launches a Shiny app for interacting with the Ollama API to perform text-based chat.
+#' The app includes options for selecting models, sending messages, viewing chat history,
+#' and downloading chat history in HTML or CSV format.
 #'
-#' This Shiny application provides an interface for chatting with an assistant using the Ollama API.
-#' It allows users to select a model, send a message to the assistant, and view the conversation history.
-#' The app also supports downloading the chat history in HTML or CSV formats.
+#' @details The app provides a user-friendly interface with the following features:
+#' - Model selection from available options fetched via the API.
+#' - A text input for sending messages and receiving responses.
+#' - A display area for chat history styled with GitHub Markdown CSS.
+#' - Options to download the chat history in either HTML or CSV formats.
 #'
 #' @import shiny
-#' @importFrom bslib bs_theme
+#' @import bslib
 #' @importFrom httr GET POST status_code
 #' @importFrom jsonlite fromJSON toJSON
+#' @importFrom markdown markdownToHTML
 #' @export
-#'
-#' @return A Shiny app object.
 #' @examples
 #' if (interactive()) {
 #'   run_app()
 #' }
 run_app <- function() {
-  # No need for `library` calls inside package code
-  # UI definition
   ui <- shiny::fluidPage(
-    theme = bslib::bs_theme(version = 5),  # Ensure bslib is loaded and used correctly
+    theme = bslib::bs_theme(version = 5,
+                            primary = "#0056b3",
+                            secondary = "#5a5a5a",
+                            success = "#1e7e34",
+                            info = "#138496",
+                            warning = "#d39e00",
+                            danger = "#c82333"),
     shiny::tags$head(
+      shiny::tags$link(rel = "stylesheet",
+                       href = "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css"),
       shiny::tags$style(shiny::HTML("
+        body {
+          background-color: #e9ecef;
+          font-family: Arial, sans-serif;
+        }
         #chat_history {
           max-height: 400px;
           overflow-y: auto;
-          border: 1px solid #ccc;
+          border: 1px solid #ced4da;
           padding: 10px;
           border-radius: 5px;
-          background-color: #f9f9f9;
+          background-color: #ffffff;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .user-message {
-          color: #007bff;
-          font-weight: bold;
+        .markdown-body {
+          padding: 10px;
+          font-size: 14px;
         }
-        .assistant-message {
-          color: #28a745;
-          font-weight: bold;
-        }
-        #send {
-          background-color: #007bff;
-          color: white;
+        .user-section, .assistant-section, .system-section {
+          margin-bottom: 15px;
+          padding: 10px;
           border-radius: 5px;
-          border: none;
+          color: #343a40;
         }
-        #send:hover {
-          background-color: #0056b3;
+        .user-section { background-color: #cfe2ff; }
+        .assistant-section { background-color: #d4edda; }
+        .system-section { background-color: #f8d7da; }
+        .user-section h2,
+        .assistant-section h2,
+        .system-section h2 {
+          font-size: 16px;
+          font-weight: bold;
         }
       "))
     ),
@@ -62,86 +79,102 @@ run_app <- function() {
       ),
       shiny::mainPanel(
         shiny::h4("Chat History"),
-        shiny::div(id = "chat_history", shiny::htmlOutput("chat_history"))
+        shiny::div(class = "markdown-body",
+                   shiny::uiOutput("chat_history"))
       )
     )
   )
 
-  # Server logic
   server <- function(input, output, session) {
-    # Reactive value to store chat messages
     messages <- shiny::reactiveVal(list())
 
-    # Observe available models from the API
-    shiny::observe({
-      models <- tryCatch({
+    format_message_md <- function(role, content) {
+      class_name <- tolower(paste0(role, "-section"))
+      sprintf('<div class="%s">\n\n## %s\n\n%s\n\n</div>', class_name, role, content)
+    }
+
+    fetch_models <- function() {
+      tryCatch({
         response <- httr::GET("http://localhost:11434/api/tags")
         parsed <- jsonlite::fromJSON(rawToChar(response$content))
         parsed$models
       }, error = function(e) {
         c("Error fetching models")
       })
+    }
+
+    update_model_choices <- function() {
+      models <- fetch_models()
       shiny::updateSelectInput(session, "model", choices = models)
-    })
+    }
 
-    # Handle user message submission
-    shiny::observeEvent(input$send, {
+    send_message <- function() {
       shiny::req(input$message, input$model)
-      current <- messages()
+      current_messages <- messages()
 
-      # Add user message to chat history
-      user_msg <- sprintf("<span class='user-message'>User:</span> %s", input$message)
-      messages(c(current, user_msg))
+      user_msg <- format_message_md("User", input$message)
+      messages(c(current_messages, user_msg))
 
-      # API call to fetch assistant response
       response <- httr::POST(
         url = "http://localhost:11434/api/generate",
-        body = jsonlite::toJSON(list(
-          model = input$model,
-          prompt = input$message,
-          stream = FALSE
-        ), auto_unbox = TRUE),
+        body = jsonlite::toJSON(list(model = input$model, prompt = input$message, stream = FALSE), auto_unbox = TRUE),
         encode = "json"
       )
 
       if (httr::status_code(response) == 200) {
         content <- jsonlite::fromJSON(rawToChar(response$content))
-        bot_msg <- sprintf("<span class='assistant-message'>Assistant:</span> %s", content$response)
-        messages(c(current, user_msg, bot_msg))
+        bot_msg <- format_message_md("Assistant", content$response)
+        messages(c(current_messages, user_msg, bot_msg))
       } else {
-        error_msg <- "<span class='error'>Error:</span> Unable to fetch response."
-        messages(c(current, user_msg, error_msg))
+        error_msg <- format_message_md("System", "Error: Unable to fetch response.")
+        messages(c(current_messages, user_msg, error_msg))
       }
-      shiny::updateTextInput(session, "message", value = "")
-    })
 
-    # Render chat history in UI
+      shiny::updateTextAreaInput(session, "message", value = "")
+    }
+
     output$chat_history <- shiny::renderUI({
-      shiny::HTML(paste(messages(), collapse = "<br><br>"))
+      md_content <- paste(messages(), collapse = "\n")
+      shiny::HTML(markdown::markdownToHTML(text = md_content, fragment.only = TRUE))
     })
 
-    # Handle chat history download
     output$download_chat <- shiny::downloadHandler(
       filename = function() {
         paste("chat_history", Sys.Date(), ".", tolower(input$download_format), sep = "")
       },
       content = function(file) {
-        chat <- messages()
+        chat_data <- messages()
+
         if (input$download_format == "HTML") {
-          html_content <- paste0("<html><body>", paste(chat, collapse = "<br><br>"), "</body></html>")
+          html_content <- paste0(
+            "<html><head>",
+            '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css">',
+            "</head><body class='markdown-body'>",
+            markdown::markdownToHTML(text = paste(chat_data, collapse = "\n"), fragment.only = TRUE),
+            "</body></html>"
+          )
           writeLines(html_content, file)
+
         } else if (input$download_format == "CSV") {
-          chat_data <- data.frame(
-            Type = ifelse(grepl("User:", chat), "User", "Assistant"),
-            Message = gsub("<.*?>", "", chat),
+          chat_df <- data.frame(
+            Type = ifelse(grepl("## User", chat_data), "User",
+                          ifelse(grepl("## Assistant", chat_data), "Assistant", "System")),
+            Message = gsub("## .*\n\n|<div.*?>|</div>", "", chat_data),
             stringsAsFactors = FALSE
           )
-          write.csv(chat_data, file, row.names = FALSE)
+          write.csv(chat_df, file, row.names = FALSE)
         }
       }
     )
+
+    observe({
+      update_model_choices()
+    })
+
+    observeEvent(input$send, {
+      send_message()
+    })
   }
 
-  # Run the Shiny app
   shiny::shinyApp(ui, server)
 }

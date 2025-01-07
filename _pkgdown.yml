@@ -1,0 +1,25 @@
+url: http://www.indraneelchakraborty.com/shiny.ollama/
+
+template:
+  bootstrap: 5
+  light-switch: true
+  bootswatch: zephyr
+
+navbar:
+  structure:
+    right: [search, github, lightswitch]
+  components:
+    github:
+      icon: fa-github
+      href: https://github.com/ineelhere/shiny.ollama
+      aria-label: GitHub
+
+search:
+  enabled: true
+  indexUrl: search/search-index.json
+
+footer:
+  structure:
+    left: [developed_by]
+  components:
+    developed_by: Developed by <a href="https://www.linkedin.com/in/indraneelchakraborty/" target="_blank">Indraneel Chakraborty </a>

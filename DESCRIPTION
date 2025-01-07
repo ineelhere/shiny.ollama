@@ -1,0 +1,32 @@
+Package: shiny.ollama
+Version: 0.1.0
+Title: 'Shiny' Interface for 'Ollama'
+Description: A web application framework that enables interaction with 'Ollama' large 
+    language models through 'Shiny'. Provides functions for managing local language 
+    models, generating text responses, and conducting chat-based interactions. Features 
+    include model loading and unloading, prompt construction, response streaming, and 
+    chat history management. Simplifies the integration of local AI capabilities into 
+    'Shiny' applications without requiring cloud services or API keys.
+Authors@R: person(
+    "Indraneel", "Chakraborty",
+    email = "hello.indraneel@gmail.com",
+    role = c("aut", "cre"))
+Maintainer: Indraneel Chakraborty <hello.indraneel@gmail.com>
+License: file LICENSE
+URL: https://ineelhere.github.io/shiny.ollama/, https://github.com/ineelhere/shiny.ollama
+BugReports: https://github.com/ineelhere/shiny.ollama/issues
+Encoding: UTF-8
+LazyData: true
+Imports:
+    shiny (>= 1.7.0),
+    bslib (>= 0.4.0),
+    httr (>= 1.4.0),
+    jsonlite (>= 1.8.0)
+Depends:
+    R (>= 3.5.0)
+Suggests:
+    testthat (>= 3.0.0),
+    pkgdown (>= 2.0.0)
+Config/testthat/edition: 3
+RoxygenNote: 7.3.2
+Date: 2024-01-07

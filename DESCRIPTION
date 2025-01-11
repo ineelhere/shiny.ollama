@@ -12,8 +12,8 @@ Authors@R: person(
     email = "hello.indraneel@gmail.com",
     role = c("aut", "cre"))
 Maintainer: Indraneel Chakraborty <hello.indraneel@gmail.com>
-License: file LICENSE
-URL: https://ineelhere.github.io/shiny.ollama/, https://github.com/ineelhere/shiny.ollama
+License: Apache License 2.0
+URL: https://www.indraneelchakraborty.com/shiny.ollama/, https://github.com/ineelhere/shiny.ollama
 BugReports: https://github.com/ineelhere/shiny.ollama/issues
 Encoding: UTF-8
 LazyData: true
@@ -30,4 +30,4 @@ Suggests:
     pkgdown (>= 2.0.0)
 Config/testthat/edition: 3
 RoxygenNote: 7.3.2
-Date: 2024-01-07
+Date: 2025-01-12

@@ -21,52 +21,7 @@
 #' }
 run_app <- function() {
   ui <- shiny::fluidPage(
-    theme = bslib::bs_theme(version = 5,
-                            primary = "#0056b3",
-                            secondary = "#5a5a5a",
-                            success = "#1e7e34",
-                            info = "#138496",
-                            warning = "#d39e00",
-                            danger = "#c82333"),
-    shiny::tags$head(
-      shiny::tags$link(rel = "stylesheet",
-                       href = "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css"),
-      shiny::tags$style(shiny::HTML("
-        body {
-          background-color: #e9ecef;
-          font-family: Arial, sans-serif;
-        }
-        #chat_history {
-          max-height: 400px;
-          overflow-y: auto;
-          border: 1px solid #ced4da;
-          padding: 10px;
-          border-radius: 5px;
-          background-color: #ffffff;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .markdown-body {
-          padding: 10px;
-          font-size: 14px;
-        }
-        .user-section, .assistant-section, .system-section {
-          margin-bottom: 15px;
-          padding: 10px;
-          border-radius: 5px;
-          color: #343a40;
-        }
-        .user-section { background-color: #cfe2ff; }
-        .assistant-section { background-color: #d4edda; }
-        .system-section { background-color: #f8d7da; }
-        .user-section h2,
-        .assistant-section h2,
-        .system-section h2 {
-          font-size: 16px;
-          font-weight: bold;
-        }
-      "))
-    ),
-    shiny::titlePanel("Ollama Chat"),
+    shiny::titlePanel("Shiny Ollama - Chat with LLMs using Ollama"),
     shiny::sidebarLayout(
       shiny::sidebarPanel(
         shiny::h4("Chat Settings"),
@@ -79,8 +34,7 @@ run_app <- function() {
       ),
       shiny::mainPanel(
         shiny::h4("Chat History"),
-        shiny::div(class = "markdown-body",
-                   shiny::uiOutput("chat_history"))
+        shiny::uiOutput("chat_history")
       )
     )
   )
@@ -89,8 +43,7 @@ run_app <- function() {
     messages <- shiny::reactiveVal(list())
 
     format_message_md <- function(role, content) {
-      class_name <- tolower(paste0(role, "-section"))
-      sprintf('<div class="%s">\n\n## %s\n\n%s\n\n</div>', class_name, role, content)
+      sprintf('## %s\n\n%s\n\n', role, content)
     }
 
     fetch_models <- function() {
@@ -147,19 +100,16 @@ run_app <- function() {
 
         if (input$download_format == "HTML") {
           html_content <- paste0(
-            "<html><head>",
-            '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css">',
-            "</head><body class='markdown-body'>",
+            "<html><head></head><body>",
             markdown::markdownToHTML(text = paste(chat_data, collapse = "\n"), fragment.only = TRUE),
             "</body></html>"
           )
           writeLines(html_content, file)
-
         } else if (input$download_format == "CSV") {
           chat_df <- data.frame(
             Type = ifelse(grepl("## User", chat_data), "User",
                           ifelse(grepl("## Assistant", chat_data), "Assistant", "System")),
-            Message = gsub("## .*\n\n|<div.*?>|</div>", "", chat_data),
+            Message = gsub("## .*\n\n", "", chat_data),
             stringsAsFactors = FALSE
           )
           write.csv(chat_df, file, row.names = FALSE)
@@ -167,7 +117,7 @@ run_app <- function() {
       }
     )
 
-    observe({
+    shiny::observe({
       update_model_choices()
     })
 

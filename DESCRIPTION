@@ -21,7 +21,8 @@ Imports:
     shiny (>= 1.7.0),
     bslib (>= 0.4.0),
     httr (>= 1.4.0),
-    jsonlite (>= 1.8.0)
+    jsonlite (>= 1.8.0),
+    markdown
 Depends:
     R (>= 3.5.0)
 Suggests:

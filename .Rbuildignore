@@ -4,3 +4,5 @@
 ^\.Rproj\.user$
 ^docs$
 ^pkgdown$
+^\.github$
+_pkgdown.yml

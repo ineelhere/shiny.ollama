@@ -82,4 +82,4 @@ To use this package, ensure **Ollama** is installed:
 
 ## 📄 License  
 
-This project is licensed under the **Apache License 2.0**. See the [LICENSE](LICENSE) file for details.  
+This project is licensed under the **Apache License 2.0**. See the [LICENSE]("https://github.com/ineelhere/shiny.ollama?tab=Apache-2.0-1-ov-file") file for details.  

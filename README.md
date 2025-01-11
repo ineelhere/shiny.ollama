@@ -1,6 +1,8 @@
 # `shiny.ollama`
 A **R Shiny interface** to work with LLM models locally using **Ollama**.
 
+![Work in Progress - Currently serving a basic release](https://img.shields.io/badge/Work%20in%20Progress-Currently%20serving%20a%20basic%20release-blue)
+
 ---
 
 ## ⚠️ Disclaimer  

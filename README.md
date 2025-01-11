@@ -44,7 +44,7 @@ The `shiny.ollama` package provides the following features:
 
 - **Model selection**: Choose from available models via a dropdown.  
 - **Message input**: Send messages to the selected model.  
-- **Streaming response**: View real-time responses from the model.  
+- **Download current chats**: Download the chats from session. 
 
 ---
 

@@ -1,13 +1,13 @@
-# 🌟 {`shiny.ollama`}
+# `shiny.ollama`
 A **R Shiny interface** to work with LLM models locally using **Ollama**.
 
 ---
 
 ## ⚠️ Disclaimer  
 
-🚨 **Important:** The `shiny.ollama` package requires **Ollama** to be installed and available on your system. Without Ollama, this package will not function as intended.  
+**Important:** The `shiny.ollama` package requires **Ollama** to be installed and available on your system. Without Ollama, this package will not function as intended.  
 
-👉 To install Ollama, refer to the [How to Install Ollama](#-how-to-install-ollama) section below.  
+To install Ollama, refer to the [How to Install Ollama](#-how-to-install-ollama) section below.  
 
 ---
 
@@ -42,13 +42,13 @@ shiny.ollama::run_app()
 
 The `shiny.ollama` package provides the following features:  
 
-- 🎛️ **Model selection**: Choose from available models via a dropdown.  
-- 💬 **Message input**: Send messages to the selected model.  
-- 🌐 **Streaming response**: View real-time responses from the model.  
+- **Model selection**: Choose from available models via a dropdown.  
+- **Message input**: Send messages to the selected model.  
+- **Streaming response**: View real-time responses from the model.  
 
 ---
 
-## 🖥️ Example  
+## Example  
 
 Run the following example to launch the app:  
 
@@ -65,9 +65,9 @@ shiny.ollama::run_app()
 
 To use this package, ensure **Ollama** is installed:  
 
-1. 🌐 Visit the [Ollama website](https://ollama.com) and download the installer for your OS.  
-2. 🛠️ Run the installer and follow the on-screen steps.  
-3. ✅ Verify the installation by running this command in your terminal:  
+1. Visit the [Ollama website](https://ollama.com) and download the installer for your OS.  
+2. Run the installer and follow the on-screen steps.  
+3. Verify the installation by running this command in your terminal:  
 
    ```sh
    ollama --version

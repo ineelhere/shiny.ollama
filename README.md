@@ -1,9 +1,8 @@
 # `shiny.ollama`
 A **R Shiny interface** to work with LLM models locally using **Ollama**.
 
-![Work in Progress - Currently serving a basic release](https://img.shields.io/badge/Work%20in%20Progress-Currently%20serving%20a%20basic%20release-blue)
+![Work in Progress - Currently serving a basic release](https://img.shields.io/badge/Work%20in%20Progress-Currently%20serving%20a%20basic%20release-blue) [![Visitors](https://hits.sh/github.com/ineelhere/shiny.ollama.svg?label=Visitors&style=flat-square)](https://hits.sh/github.com/ineelhere/shiny.ollama/)
 
----
 
 ## ⚠️ Disclaimer  
 
@@ -11,7 +10,7 @@ A **R Shiny interface** to work with LLM models locally using **Ollama**.
 
 To install Ollama, refer to the [How to Install Ollama](#-how-to-install-ollama) section below.  
 
----
+
 
 ## 📦 Installation  
 
@@ -25,7 +24,7 @@ install.packages("devtools")
 devtools::install_github("ineelhere/shiny.ollama")
 ```
 
----
+
 
 ## 🚀 Usage  
 
@@ -38,7 +37,7 @@ library(shiny.ollama)
 shiny.ollama::run_app()
 ```
 
----
+
 
 ## ✨ Features  
 
@@ -48,7 +47,7 @@ The `shiny.ollama` package provides the following features:
 - **Message input**: Send messages to the selected model.  
 - **Download current chats**: Download the chats from session. 
 
----
+
 
 ## Example  
 
@@ -61,7 +60,7 @@ library(shiny.ollama)
 shiny.ollama::run_app()
 ```
 
----
+
 
 ## 📥 How to Install Ollama  
 
@@ -78,8 +77,8 @@ To use this package, ensure **Ollama** is installed:
    You should see the version number displayed if the installation was successful.  
 4. Pull a model on your local (for example [click here](https://ollama.com/library/llama3.3)) to start with and use it in the app.
 
----
+
 
 ## 📄 License  
 
-This project is licensed under the **Apache License 2.0**. See the [LICENSE]("https://github.com/ineelhere/shiny.ollama?tab=Apache-2.0-1-ov-file") file for details.  
+This project is licensed under the **Apache License 2.0**.

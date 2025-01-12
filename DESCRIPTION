@@ -12,7 +12,7 @@ Authors@R: person(
     email = "hello.indraneel@gmail.com",
     role = c("aut", "cre"))
 Maintainer: Indraneel Chakraborty <hello.indraneel@gmail.com>
-License: Apache License 2.0
+License: Apache License (>= 2)
 URL: https://www.indraneelchakraborty.com/shiny.ollama/, https://github.com/ineelhere/shiny.ollama
 BugReports: https://github.com/ineelhere/shiny.ollama/issues
 Encoding: UTF-8

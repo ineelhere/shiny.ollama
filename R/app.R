@@ -76,7 +76,11 @@ run_app <- function() {
 
       if (httr::status_code(response) == 200) {
         content <- jsonlite::fromJSON(rawToChar(response$content))
+
+        # Render the response in Markdown format
         bot_msg <- format_message_md("Assistant", content$response)
+
+        # Append the bot message to messages
         messages(c(current_messages, user_msg, bot_msg))
       } else {
         error_msg <- format_message_md("System", "Error: Unable to fetch response.")
@@ -88,6 +92,8 @@ run_app <- function() {
 
     output$chat_history <- shiny::renderUI({
       md_content <- paste(messages(), collapse = "\n")
+
+      # Convert Markdown to HTML for rendering in UI
       shiny::HTML(markdown::markdownToHTML(text = md_content, fragment.only = TRUE))
     })
 

@@ -1,12 +1,7 @@
 Package: shiny.ollama
 Version: 0.1.0
-Title: 'Shiny' Interface for 'Ollama'
-Description: A web application framework that enables interaction with 'Ollama' large 
-    language models through 'Shiny'. Provides functions for managing local language 
-    models, generating text responses, and conducting chat-based interactions. Features 
-    include model loading and unloading, prompt construction, response streaming, and 
-    chat history management. Simplifies the integration of local AI capabilities into 
-    'Shiny' applications without requiring cloud services or API keys.
+Title: 'shiny' Interface for 'Ollama'
+Description: A web application framework that enables interaction with 'Ollama' large language models through 'shiny'. Provides functions for managing local language models, generating text responses, and conducting chat-based interactions. Features include model loading and unloading, prompt construction, response streaming, and chat history management. Simplifies the integration of local AI capabilities into 'shiny' applications without requiring cloud services or API keys. <https://www.ollama.com>
 Authors@R: person(
     "Indraneel", "Chakraborty",
     email = "hello.indraneel@gmail.com",

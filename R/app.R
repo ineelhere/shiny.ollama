@@ -1,5 +1,5 @@
-#' @title Run Shiny Application for Chat Interface
-#' @description Launches a Shiny app for interacting with the Ollama API to perform text-based chat.
+#' @title Run shiny Application for Chat Interface
+#' @description Launches a shiny app for interacting with the Ollama API to perform text-based chat.
 #' The app includes options for selecting models, sending messages, viewing chat history,
 #' and downloading chat history in HTML or CSV format.
 #'

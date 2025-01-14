@@ -21,7 +21,7 @@
 #' }
 run_app <- function() {
   ui <- shiny::fluidPage(
-    shiny::titlePanel("Shiny Ollama - Chat with LLMs using Ollama"),
+    shiny::titlePanel("shiny Ollama - Chat with LLMs using Ollama"),
     shiny::sidebarLayout(
       shiny::sidebarPanel(
         shiny::h4("Chat Settings"),

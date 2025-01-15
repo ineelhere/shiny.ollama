@@ -1,5 +1,8 @@
 # `shiny.ollama`
-A **R Shiny interface** to work with LLM models locally using **Ollama**.
+**R shiny interface for chatting with LLMs offline on local with ollama**
+
+
+*Chat with LLMs on your machine without internet with complete privacy via ollama, powered by R shiny interface. For more information on ollama, visit <https://ollama.com>.*
 
 ![Work in Progress - Currently serving a basic release](https://img.shields.io/badge/Work%20in%20Progress-Currently%20serving%20a%20basic%20release-blue) [![Visitors](https://hits.sh/github.com/ineelhere/shiny.ollama.svg?label=Visitors&style=flat-square)](https://hits.sh/github.com/ineelhere/shiny.ollama/)
 
@@ -82,3 +85,6 @@ To use this package, ensure **Ollama** is installed:
 ## 📄 License  
 
 This project is licensed under the **Apache License 2.0**.
+
+___
+Collaboration and Feedback are most welcome. More updates to come. Happy coding! 🎉

@@ -1,7 +1,7 @@
 Package: shiny.ollama
 Version: 0.1.0
-Title: 'shiny' Interface for 'Ollama'
-Description: A web application framework that enables interaction with 'Ollama' large language models through 'shiny'. Provides functions for managing local language models, generating text responses, and conducting chat-based interactions. Features include model loading and unloading, prompt construction, response streaming, and chat history management. Simplifies the integration of local AI capabilities into 'shiny' applications without requiring cloud services or API keys. <https://www.ollama.com>
+Title: R shiny interface for chatting with LLMs offline on local with ollama
+Description: Chat with LLMs on your machine without internet with complete privacy via ollama, powered by R shiny interface. For more information on ollama, visit <https://ollama.com>.
 Authors@R: person(
     "Indraneel", "Chakraborty",
     email = "hello.indraneel@gmail.com",
@@ -17,7 +17,8 @@ Imports:
     bslib (>= 0.4.0),
     httr (>= 1.4.0),
     jsonlite (>= 1.8.0),
-    markdown
+    markdown,
+    mockery
 Depends:
     R (>= 3.5.0)
 Suggests:

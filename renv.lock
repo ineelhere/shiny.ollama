@@ -169,6 +169,21 @@
       ],
       "Hash": "99b79fcbd6c4d1ce087f5c5c758b384f"
     },
+    "diffobj": {
+      "Package": "diffobj",
+      "Version": "0.3.5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "crayon",
+        "methods",
+        "stats",
+        "tools",
+        "utils"
+      ],
+      "Hash": "bcaa8b95f8d7d01a5dedfd959ce88ab8"
+    },
     "digest": {
       "Package": "digest",
       "Version": "0.6.37",
@@ -445,6 +460,16 @@
       ],
       "Hash": "18e9c28c1d3ca1560ce30658b22ce104"
     },
+    "mockery": {
+      "Package": "mockery",
+      "Version": "0.4.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "testthat"
+      ],
+      "Hash": "674d86780fecdee68504452578cb010c"
+    },
     "openssl": {
       "Package": "openssl",
       "Version": "2.3.0",
@@ -470,6 +495,21 @@
         "vctrs"
       ],
       "Hash": "101ca350beea21261a15ba169d7a8513"
+    },
+    "pkgbuild": {
+      "Package": "pkgbuild",
+      "Version": "1.4.5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "R6",
+        "callr",
+        "cli",
+        "desc",
+        "processx"
+      ],
+      "Hash": "30eaaab94db72652e72e3475c1b55278"
     },
     "pkgconfig": {
       "Package": "pkgconfig",
@@ -510,6 +550,35 @@
         "yaml"
       ],
       "Hash": "df2912d5873422b55a13002510f02c9f"
+    },
+    "pkgload": {
+      "Package": "pkgload",
+      "Version": "1.4.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "cli",
+        "desc",
+        "fs",
+        "glue",
+        "lifecycle",
+        "methods",
+        "pkgbuild",
+        "processx",
+        "rlang",
+        "rprojroot",
+        "utils",
+        "withr"
+      ],
+      "Hash": "2ec30ffbeec83da57655b850cf2d3e0e"
+    },
+    "praise": {
+      "Package": "praise",
+      "Version": "1.0.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "a555924add98c99d2f411e37e7d25e9f"
     },
     "processx": {
       "Package": "processx",
@@ -631,6 +700,16 @@
       ],
       "Hash": "df99277f63d01c34e95e3d2f06a79736"
     },
+    "rprojroot": {
+      "Package": "rprojroot",
+      "Version": "2.0.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "4c8415e0ec1e29f3f4f6fc108bef0144"
+    },
     "sass": {
       "Package": "sass",
       "Version": "0.4.9",
@@ -707,6 +786,35 @@
       ],
       "Hash": "213b6b8ed5afbf934843e6c3b090d418"
     },
+    "testthat": {
+      "Package": "testthat",
+      "Version": "3.2.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "R6",
+        "brio",
+        "callr",
+        "cli",
+        "desc",
+        "digest",
+        "evaluate",
+        "jsonlite",
+        "lifecycle",
+        "magrittr",
+        "methods",
+        "pkgload",
+        "praise",
+        "processx",
+        "ps",
+        "rlang",
+        "utils",
+        "waldo",
+        "withr"
+      ],
+      "Hash": "42f889439ccb14c55fc3d75c9c755056"
+    },
     "textshaping": {
       "Package": "textshaping",
       "Version": "0.4.1",
@@ -772,6 +880,21 @@
         "rlang"
       ],
       "Hash": "c03fa420630029418f7e6da3667aac4a"
+    },
+    "waldo": {
+      "Package": "waldo",
+      "Version": "0.6.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "cli",
+        "diffobj",
+        "glue",
+        "methods",
+        "rlang"
+      ],
+      "Hash": "52f574062a7b66e56926988c3fbdb3b7"
     },
     "whisker": {
       "Package": "whisker",

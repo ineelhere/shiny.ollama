@@ -1,84 +1,66 @@
-# `shiny.ollama`
-A **R Shiny interface** to work with LLM models locally using **Ollama**.
+# `shiny.ollama` 🚀
 
-![Work in Progress - Currently serving a basic release](https://img.shields.io/badge/Work%20in%20Progress-Currently%20serving%20a%20basic%20release-blue) [![Visitors](https://hits.sh/github.com/ineelhere/shiny.ollama.svg?label=Visitors&style=flat-square)](https://hits.sh/github.com/ineelhere/shiny.ollama/)
 
+[![CRAN Version](https://img.shields.io/cran/v/shiny.ollama)](https://cran.r-project.org/package=shiny.ollama)
+![](https://img.shields.io/badge/Upgrades%20in%20Progress-Currently%20serving%20a%20basic%20release-cyan)
+
+**R Shiny Interface for Chatting with LLMs Offline via Ollama**
+
+*Experience seamless, private, and offline AI conversations right on your machine! `shiny.ollama` provides a user-friendly R Shiny interface to interact with LLMs locally, powered by [Ollama](https://ollama.com).*  
+
+[![pkgdown](https://img.shields.io/badge/pkgdown-documentation-red.svg)](https://www.indraneelchakraborty.com/shiny.ollama/)
+[![Visitors](https://hits.sh/github.com/ineelhere/shiny.ollama.svg?label=Visitors&style=flat-square)](https://hits.sh/github.com/ineelhere/shiny.ollama/)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![CRAN downloads](https://cranlogs.r-pkg.org/badges/shiny.ollama)](https://CRAN.R-project.org/package=shiny.ollama)
+[![R-CMD-check](https://github.com/ineelhere/shiny.ollama/actions/workflows/R-CMD-check.yaml/badge.svg)]
 
 ## ⚠️ Disclaimer  
-
-**Important:** The `shiny.ollama` package requires **Ollama** to be installed and available on your system. Without Ollama, this package will not function as intended.  
-
-To install Ollama, refer to the [How to Install Ollama](#-how-to-install-ollama) section below.  
-
-
+**Important:** `shiny.ollama` requires Ollama to be installed on your system. Without it, this package will not function. Follow the [Installation Guide](#-how-to-install-ollama) below to set up Ollama first.  
 
 ## 📦 Installation  
+### From CRAN (Recommended)
+```r
+install.packages("shiny.ollama")
+```
 
-To install the `shiny.ollama` package, follow these steps in **R**:  
-
-```R
+### From GitHub (Latest Development Version)
+```r
 # Install devtools if not already installed
 install.packages("devtools")
 
-# Install shiny.ollama from GitHub
 devtools::install_github("ineelhere/shiny.ollama")
 ```
 
-
-
-## 🚀 Usage  
-
-Once installed, you can use the `shiny.ollama` app by running:
-
-```R
-library(shiny.ollama)
-
-# Launch the Shiny app
-shiny.ollama::run_app()
-```
-
-
-
 ## ✨ Features  
+- 🔒 **Fully Offline**: No internet required – complete privacy
+- 🎛 **Model Selection**: Easily choose from available LLM models
+- 💬 **Message Input**: Engage in conversations with AI
+- 💾 **Save & Download Chats**: Export your chat history
+- 🖥 **User-Friendly Interface**: Powered by R Shiny
 
-The `shiny.ollama` package provides the following features:  
-
-- **Model selection**: Choose from available models via a dropdown.  
-- **Message input**: Send messages to the selected model.  
-- **Download current chats**: Download the chats from session. 
-
-
-
-## Example  
-
-Run the following example to launch the app:  
-
-```R
+## 🚀 Quick Start  
+Launch the Shiny app in R with:
+```r
 library(shiny.ollama)
 
-# Run the Shiny app
+# Start the application
 shiny.ollama::run_app()
 ```
-
-
 
 ## 📥 How to Install Ollama  
+To use this package, install Ollama first:  
 
-To use this package, ensure **Ollama** is installed:  
-
-1. Visit the [Ollama website](https://ollama.com) and download the installer for your OS.  
-2. Run the installer and follow the on-screen steps.  
-3. Verify the installation by running this command in your terminal:  
-
+1. 🔗 Download Ollama from [here](https://ollama.com) (Mac, Windows, Linux supported).
+2. 🛠 Install it by following the provided instructions.
+3. ✅ Verify your installation:
    ```sh
    ollama --version
-   ```  
-
-   You should see the version number displayed if the installation was successful.  
-4. Pull a model on your local (for example [click here](https://ollama.com/library/llama3.3)) to start with and use it in the app.
-
-
+   ```
+   If successful, the version number will be displayed.
+4. 📌 Pull a model (e.g., [Llama3.3](https://ollama.com/library/llama3.3)) to get started.
 
 ## 📄 License  
-
 This project is licensed under the **Apache License 2.0**.
+
+💡 Contributions, feedback, and feature requests are always welcome! Stay tuned for more updates. 🚀
+

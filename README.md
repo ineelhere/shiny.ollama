@@ -11,8 +11,8 @@
 [![pkgdown](https://img.shields.io/badge/pkgdown-documentation-red.svg)](https://www.indraneelchakraborty.com/shiny.ollama/)
 [![Visitors](https://hits.sh/github.com/ineelhere/shiny.ollama.svg?label=Visitors&style=flat-square)](https://hits.sh/github.com/ineelhere/shiny.ollama/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![CRAN
-downloads](https://cranlogs.r-pkg.org/badges/shiny.ollama)](https://CRAN.R-project.org/package=shiny.ollama)
+[![CRAN downloads](https://cranlogs.r-pkg.org/badges/shiny.ollama)](https://CRAN.R-project.org/package=shiny.ollama)
+[![R-CMD-check](https://github.com/ineelhere/shiny.ollama/actions/workflows/R-CMD-check.yaml/badge.svg)]
 
 ## ⚠️ Disclaimer  
 **Important:** `shiny.ollama` requires Ollama to be installed on your system. Without it, this package will not function. Follow the [Installation Guide](#-how-to-install-ollama) below to set up Ollama first.  

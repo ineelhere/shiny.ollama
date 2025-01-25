@@ -5,7 +5,7 @@ fetch_models <- function() {
   tryCatch({
     response <- httr::GET("http://localhost:11434/api/tags")
     parsed <- jsonlite::fromJSON(rawToChar(response$content))
-    parsed$models
+    parsed$models$model
   }, error = function(e) {
     c("Error fetching models")
   })
@@ -23,7 +23,7 @@ send_ollama_message <- function(message, model) {
       body = jsonlite::toJSON(list(model = model, prompt = message, stream = FALSE), auto_unbox = TRUE),
       encode = "json"
     )
-    
+
     if (httr::status_code(response) == 200) {
       content <- jsonlite::fromJSON(rawToChar(response$content))
       list(success = TRUE, response = content$response)

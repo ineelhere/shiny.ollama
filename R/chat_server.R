@@ -21,7 +21,7 @@ create_chat_server <- function() {
 
       result <- send_ollama_message(input$message, input$model)
 
-      bot_msg <- format_message_md("Assistant", ifelse(result$success, result$response, result$error))
+      bot_msg <- format_message_md(input$model, ifelse(result$success, result$response, result$error))
       messages(c(current_messages, user_msg, bot_msg))
       
       shiny::updateTextAreaInput(session, "message", value = "")

@@ -66,6 +66,25 @@ create_chat_ui <- function() {
             margin-top: 20px;
             border-radius: 6px;
             box-shadow: inset -1px -1px rgba(255,255,255,0.1);
+          }
+          #loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #007bff;
+          }
+          .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+          }
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
           }"
         )
       ),
@@ -79,11 +98,26 @@ create_chat_ui <- function() {
                });
                observer.observe(chatHistory[0], { childList: true });
              }
+
              $('#message').keypress(function(event) {
                if (event.which === 13 && !event.shiftKey) {
                  event.preventDefault();
                  $('#send').click();
                }
+             });
+
+             $('#send').on('click', function() {
+               // Disable send button
+               $('#send').prop('disabled', true);
+
+               // Show loading spinner
+               $('#loading-spinner').html('<div class=\"spinner\"></div><p>Generating response...</p>').show();
+             });
+
+             // Shiny binding to hide spinner when response is ready
+             Shiny.addCustomMessageHandler('hideLoading', function(message) {
+               $('#loading-spinner').hide();
+               $('#send').prop('disabled', false);
              });
            });"
         )
@@ -97,6 +131,7 @@ create_chat_ui <- function() {
         shiny::selectInput("model", "Select Model:", choices = NULL),
         shiny::textAreaInput("message", "Type your message:", rows = 4, placeholder = "Enter your message here..."),
         shiny::actionButton("send", "Send"),
+        shiny::div(id = "loading-spinner"),
         shiny::hr(),
         shiny::selectInput("download_format", "Download Format:", choices = c("HTML", "CSV")),
         shiny::downloadButton("download_chat", "Download Chat History")

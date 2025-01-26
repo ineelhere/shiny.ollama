@@ -29,6 +29,7 @@ create_chat_server <- function() {
 
     # Render chat history
     output$chat_history <- shiny::renderUI({
+      session$sendCustomMessage(type = "hideLoading", message = TRUE)
       md_content <- paste(messages(), collapse = "\n")
       shiny::HTML(markdown::markdownToHTML(text = md_content, fragment.only = TRUE))
     })

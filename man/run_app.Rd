@@ -10,15 +10,5 @@ run_app()
 No return value, called for side effects.
 }
 \description{
-Launches a shiny app for interacting with the Ollama API to perform
-text-based chat.
-}
-\details{
-The app provides a user-friendly interface for chatting with LLMs using
-Ollama, including model selection, message sending, and chat history export.
-}
-\examples{
-if (interactive()) {
-  run_app()
-}
+Launches a shiny app for interacting with the Ollama API
 }

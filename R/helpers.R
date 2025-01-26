@@ -27,3 +27,36 @@ parse_message <- function(message) {
   content <- gsub("\n\n$", "", content)
   list(role = role, content = content)
 }
+
+#' @title Convert chat history to downloadable format
+#' @param messages List of chat messages
+#' @param format Character string specifying format ("HTML" or "CSV")
+#' @return Formatted chat history as a character string (HTML) or a data frame (CSV)
+#' @export
+format_chat_history <- function(messages, format = c("HTML", "CSV")) {
+  format <- match.arg(format)
+
+  if (format == "HTML") {
+    html_content <- paste0(
+      "<html><head></head><body>",
+      markdown::markdownToHTML(
+        text = paste(messages, collapse = "\n"),
+        fragment.only = TRUE
+      ),
+      "</body></html>"
+    )
+    return(html_content)
+  } else {
+    # Parse each message into role and content
+    parsed_messages <- lapply(messages, parse_message)
+
+    # Convert to data frame
+    chat_df <- data.frame(
+      Timestamp = Sys.time(),  # Adding timestamp for better record keeping
+      Role = sapply(parsed_messages, function(x) x$role),
+      Message = sapply(parsed_messages, function(x) x$content),
+      stringsAsFactors = FALSE
+    )
+    return(chat_df)
+  }
+}

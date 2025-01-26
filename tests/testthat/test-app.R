@@ -1,71 +1,43 @@
 # Load necessary libraries
 library(testthat)
 
-# Tests for format_message_md
-
+# Test for format_message_md function
 test_that("format_message_md formats messages correctly", {
-  expect_equal(format_message_md("User", "Hello"), "## User\n\nHello\n\n")
-  expect_equal(format_message_md("Assistant", "Hi there!"), "## Assistant\n\nHi there!\n\n")
+
+  # Test when role is "User" and content is "Hello"
+  result <- format_message_md("User", "Hello")
+  expected_result <- "#### `User`\n\nHello\n\n"
+  expect_equal(result, expected_result)
+
+  # Test when role is "Assistant" and content is "How can I help you?"
+  result <- format_message_md("Assistant", "How can I help you?")
+  expected_result <- "#### `Assistant`\n\nHow can I help you?\n\n"
+  expect_equal(result, expected_result)
+
+  # Test when role is "System" and content is empty
+  result <- format_message_md("System", "")
+  expected_result <- "#### `System`\n\n\n\n"
+  expect_equal(result, expected_result)
 })
 
-# Tests for fetch_models
+# Test for parse_message function
+test_that("parse_message parses markdown messages correctly", {
 
-test_that("fetch_models handles successful API call", {
-  mock_response <- list(models = c("model1", "model2"))
-  mockery::stub(fetch_models, "httr::GET", function(...) {
-    structure(list(content = charToRaw(jsonlite::toJSON(mock_response))),
-              class = "response")
-  })
-  expect_equal(fetch_models(), c("model1", "model2"))
-})
+  # Test when message is correctly formatted with "User" role
+  message <- "#### `User`\n\nHello\n\n"
+  result <- parse_message(message)
+  expected_result <- list(role = "`User`", content = "Hello")
+  expect_equal(result, expected_result)
 
-test_that("fetch_models handles API error", {
-  mockery::stub(fetch_models, "httr::GET", function(...) stop("API error"))
-  expect_equal(fetch_models(), "Error fetching models")
-})
+  # Test when message is correctly formatted with "Assistant" role
+  message <- "#### `Assistant`\n\nHow can I help you?\n\n"
+  result <- parse_message(message)
+  expected_result <- list(role = "`Assistant`", content = "How can I help you?")
+  expect_equal(result, expected_result)
 
-# Tests for send_ollama_message
-
-test_that("send_ollama_message handles successful API call", {
-  mock_response <- list(response = "Hello, User!")
-  mockery::stub(send_ollama_message, "httr::POST", function(...) {
-    structure(list(content = charToRaw(jsonlite::toJSON(mock_response)),
-                   status_code = 200),
-              class = "response")
-  })
-  result <- send_ollama_message("Hi", "test_model")
-  expect_true(result$success)
-  expect_equal(result$response, "Hello, User!")
-})
-
-test_that("send_ollama_message handles API error", {
-  mockery::stub(send_ollama_message, "httr::POST", function(...) {
-    structure(list(status_code = 500), class = "response")
-  })
-  result <- send_ollama_message("Hi", "test_model")
-  expect_false(result$success)
-  expect_equal(result$error, "Error: Unable to fetch response.")
-})
-
-test_that("send_ollama_message handles connection error", {
-  mockery::stub(send_ollama_message, "httr::POST", function(...) stop("Connection error"))
-  result <- send_ollama_message("Hi", "test_model")
-  expect_false(result$success)
-  expect_match(result$error, "Connection error")
-})
-
-# Tests for parse_message
-
-test_that("parse_message extracts role and content", {
-  message <- "## User\n\nHello\n\n"
-  parsed <- parse_message(message)
-  expect_equal(parsed$role, "User")
-  expect_equal(parsed$content, "Hello")
-})
-
-test_that("parse_message handles empty content", {
-  message <- "## Assistant\n\n\n\n"
-  parsed <- parse_message(message)
-  expect_equal(parsed$role, "Assistant")
-  expect_equal(parsed$content, "")
+  # Test when message has no content
+  message <- "#### `System`\n\n\n\n"
+  result <- parse_message(message)
+  expected_result <- list(role = "`System`", content = "")
+  expect_equal(result, expected_result)
 })

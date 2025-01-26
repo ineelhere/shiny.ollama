@@ -8,7 +8,7 @@ create_chat_ui <- function() {
         shiny::HTML(
           "body {
             font-family: Arial, sans-serif;
-            background-color: #f0f4f8;
+            background-color: ##572a02;
             margin: 0;
             padding: 0;
           }
@@ -58,7 +58,7 @@ create_chat_ui <- function() {
             padding: 15px;
           }
           .footer {
-            background-color: #003366;
+            background-color: #01473f;
             color: white;
             text-align: center;
             padding: 15px;

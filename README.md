@@ -14,6 +14,8 @@
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/shiny.ollama)](https://CRAN.R-project.org/package=shiny.ollama)
 ![R-CMD-check](https://github.com/ineelhere/shiny.ollama/actions/workflows/R-CMD-check.yaml/badge.svg)
 
+![alt text](shiny_ollama_ui.png)
+
 ## ⚠️ Disclaimer  
 **Important:** `shiny.ollama` requires Ollama to be installed on your system. Without it, this package will not function. Follow the [Installation Guide](#-how-to-install-ollama) below to set up Ollama first.  
 

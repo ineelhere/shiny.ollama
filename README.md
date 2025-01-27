@@ -1,7 +1,7 @@
 # `shiny.ollama` 
 
 [![CRAN Version](https://img.shields.io/cran/v/shiny.ollama)](https://cran.r-project.org/package=shiny.ollama)
-[![Dev Version](https://img.shields.io/badge/dev-0.1.1-blue)](https://github.com/your-repo/shiny.ollama)
+[![Dev Version](https://img.shields.io/badge/dev-v0.1.1-blue)](https://github.com/ineelhere/shiny.ollama)
 
 **R Shiny Interface for Chatting with LLMs Offline via Ollama**
 
@@ -9,11 +9,10 @@
 
 [![pkgdown](https://img.shields.io/badge/pkgdown-documentation-red.svg)](https://www.indraneelchakraborty.com/shiny.ollama/)
 [![Visitors](https://hits.sh/github.com/ineelhere/shiny.ollama.svg?label=Visitors&style=flat-square)](https://hits.sh/github.com/ineelhere/shiny.ollama/)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/shiny.ollama)](https://CRAN.R-project.org/package=shiny.ollama)
 ![R-CMD-check](https://github.com/ineelhere/shiny.ollama/actions/workflows/R-CMD-check.yaml/badge.svg)
 
-![alt text](shiny_ollama_ui.png)
+![](https://raw.githubusercontent.com/ineelhere/shiny.ollama/refs/heads/main/shiny_ollama_ui.png)
 
 ## ⚠️ Disclaimer  
 **Important:** `shiny.ollama` requires Ollama to be installed on your system. Without it, this package will not function. Follow the [Installation Guide](#-how-to-install-ollama) below to set up Ollama first.  
@@ -62,11 +61,8 @@ To use this package, install Ollama first:
 4.  Pull a model (e.g., [deepseek-r1](https://ollama.com/library/deepseek-r1)) to get started.
 
 ## License and Declaration
-This project is an independent, passion-driven open source initiative, released under the **`Apache License 2.0`**. 
-
-It is not affiliated with, owned by, funded by, or influenced by any external organization. The project is dedicated to fostering a community of developers who share a love for coding and collaborative innovation.
+This R package is an independent, passion-driven open source initiative, released under the **`Apache License 2.0`**. It is not affiliated with, owned by, funded by, or influenced by any external organization. The project is dedicated to fostering a community of developers who share a love for coding and collaborative innovation.
 
  Contributions, feedback, and feature requests are always welcome! 
  
  Stay tuned for more updates. 🚀
-

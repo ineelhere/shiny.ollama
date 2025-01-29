@@ -4,12 +4,33 @@
 \alias{send_ollama_message}
 \title{Send message to Ollama API and get response}
 \usage{
-send_ollama_message(message, model)
+send_ollama_message(
+  message,
+  model,
+  temperature,
+  num_ctx,
+  top_k,
+  top_p,
+  system,
+  messages
+)
 }
 \arguments{
 \item{message}{Character string containing the user message}
 
 \item{model}{Character string specifying the model name}
+
+\item{temperature}{Numeric value specifying the temperature}
+
+\item{num_ctx}{Integer value specifying the number of contexts}
+
+\item{top_k}{Integer value specifying the top K}
+
+\item{top_p}{Numeric value specifying the top P}
+
+\item{system}{Character string specifying the system}
+
+\item{messages}{List of messages}
 }
 \value{
 A list with elements `success` (logical) and either `response` (character) or `error` (character)

@@ -1,7 +1,7 @@
 Package: shiny.ollama
-Version: 0.1.1
+Version: 0.1.2
 Title: R 'shiny' Interface for Chatting with Large Language Models Offline on Local with 'ollama'
-Description: Chat with large language models on your machine without internet with complete privacy via 'ollama', powered by R 'shiny' interface. For more information on 'ollama', visit <https://ollama.com>.
+Description: Chat with large language models like deepseek-r1, nemotron, llama and many more on your machine without internet with complete privacy via 'ollama', powered by R 'shiny' interface. For more information on 'ollama', visit <https://ollama.com>.
 Authors@R: person(
     "Indraneel", "Chakraborty",
     email = "hello.indraneel@gmail.com",
@@ -27,4 +27,4 @@ Suggests:
     pkgdown (>= 2.0.0)
 Config/testthat/edition: 3
 RoxygenNote: 7.3.2
-Date: 2025-01-12
+Date: 2025-01-29

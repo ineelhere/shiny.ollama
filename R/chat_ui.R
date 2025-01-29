@@ -276,7 +276,7 @@ create_chat_ui <- function() {
           title = "Provides system instructions to guide model behavior",
           shiny::textInput("system", "System Instructions", value = "")
         ),
-        shiny::actionButton("send", "Send"),
+        shiny::actionButton("send", "Generate \U0001F680"),
         shiny::div(id = "loading-spinner"),
         shiny::div(class = "section-header", "Export Options \U0001F4C1"),
         shiny::selectInput("download_format", "Download Format", choices = c("HTML", "CSV")),

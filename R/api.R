@@ -10,7 +10,6 @@ fetch_models <- function() {
     c("Error fetching models")
   })
 }
-
 #' @title Send message to Ollama API and get response
 #' @param message Character string containing the user message
 #' @param model Character string specifying the model name
@@ -62,8 +61,20 @@ send_ollama_message <- function(message, model, temperature, num_ctx, top_k, top
       return(list(success = FALSE, error = "Error: No valid response received."))
     }
 
-    # Combine all response parts into a single response
-    list(success = TRUE, response = paste(completions, collapse = " "))
+    # Simple concatenation with space for readability
+    full_response <- paste(completions, collapse = "")
+    
+    # Format code blocks properly
+    # Identify code blocks and ensure proper spacing
+    full_response <- gsub("```([^`]+)```", "\n```\\1```\n", full_response)
+    
+    # Ensure proper paragraph spacing
+    full_response <- gsub("\n{3,}", "\n\n", full_response)  # Replace multiple newlines with double newline
+    
+    # Ensure proper list formatting
+    full_response <- gsub("(?<=\n)([*-]) ", "\n\\1 ", full_response, perl = TRUE)
+    
+    list(success = TRUE, response = full_response)
   }, error = function(e) {
     list(success = FALSE, error = sprintf("Error: %s", e$message))
   })

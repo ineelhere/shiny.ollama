@@ -47,7 +47,7 @@ create_chat_ui <- function() {
           #download_chat:hover { background-color: #28a745; }
           #send:active, #download_chat:active { transform: scale(0.95); }
           #chat_history {
-            max-height: 450px;
+            max-height: 850px;
             overflow-y: auto;
             border-radius: 6px;
             border-top-left-radius: 12px;

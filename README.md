@@ -1,7 +1,7 @@
 # `shiny.ollama` 
 
 [![CRAN Version](https://img.shields.io/cran/v/shiny.ollama)](https://cran.r-project.org/package=shiny.ollama)
-[![Dev Version](https://img.shields.io/badge/dev-v0.1.1-blue)](https://github.com/ineelhere/shiny.ollama)
+[![Dev Version](https://img.shields.io/badge/dev-v0.1.2-blue)](https://github.com/ineelhere/shiny.ollama)
 
 **R Shiny Interface for Chatting with LLMs Offline via Ollama**
 

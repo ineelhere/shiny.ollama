@@ -3,88 +3,280 @@
 #' @keywords internal
 create_chat_ui <- function() {
   shiny::fluidPage(
+    # Add Inter font
     shiny::tags$head(
+      shiny::tags$link(
+        href = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
+        rel = "stylesheet"
+      ),
       shiny::tags$style(
         shiny::HTML(
           "body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             background-color: #f0f4f8;
             margin: 0;
-            padding: 0;
+            padding: 20px;
+            color: #1a1a1a;
           }
+
           .container-fluid {
+            max-width: 1400px;
             padding: 0 20px;
             margin: auto;
           }
+
           .title-panel {
-            background-color: #572a02;
+            background: linear-gradient(135deg, #2c1810 0%, #572a02 100%);
             color: white;
-            padding: 25px;
+            padding: 30px;
             text-align: center;
-            font-size: 30px;
-            font-weight: bold;
-            border-radius: 12px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-            margin: 20px 0;
+            font-size: 28px;
+            font-weight: 700;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(87, 42, 2, 0.2);
+            margin: 20px 0 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
           }
+
+          .gradient-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: inherit;
+            z-index: -2;
+            filter: blur(10px);
+            transition: all 0.3s;
+            opacity: 0.7;
+          }
+
+          .gradient {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200%;
+            height: 200%;
+            border-radius: 50%;
+            transition: all 0.3s;
+            background-image: linear-gradient(
+              90deg,
+              hsl(226, 89%, 70%),
+              hsl(271, 89%, 70%),
+              hsl(316, 89%, 70%),
+              hsl(1, 89%, 70%),
+              hsl(46, 89%, 70%)
+            );
+            animation: rotate 3s ease-in-out infinite;
+          }
+
+          .title-panel:hover .gradient-container {
+            transform: scale(0.98);
+          }
+
           .sidebar-panel {
-            background-color: #ffffff;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
           }
-          #send, #download_chat {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 14px 28px;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: background-color 0.3s, transform 0.1s;
+
+          .chat-history-wrapper {
+            background-color: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            margin-left: 20px;
           }
-          #send:hover { background-color: #0056b3; }
-          #download_chat { margin-top: 15px; }
-          #download_chat:hover { background-color: #28a745; }
-          #send:active, #download_chat:active { transform: scale(0.95); }
-          #chat_history {
-            max-height: 850px;
-            overflow-y: auto;
-            border-radius: 6px;
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
-            border-bottom-left-radius: 6px;
-            border-bottom-right-radius: 6px;
-            border-top: none;
-            padding: 15px;
+
+          .form-control {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 12px;
+            transition: all 0.2s ease;
+            font-size: 15px;
           }
-          .footer {
-            background-color: #01473f;
-            color: white;
-            text-align: center;
-            padding: 15px;
+
+          .form-control:focus {
+            border-color: #572a02;
+            box-shadow: 0 0 0 2px rgba(87, 42, 2, 0.1);
+            outline: none;
+          }
+
+          .form-group label {
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #333;
+          }
+
+          #send, #download_chat, #help {
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             font-size: 14px;
-            margin-top: 20px;
-            border-radius: 6px;
-            box-shadow: inset -1px -1px rgba(255,255,255,0.1);
+            cursor: pointer;
+            width: 100%;
+            border: none;
           }
-          #loading-spinner {
-            display: none;
+
+          #send {
+            background: linear-gradient(135deg, #572a02 0%, #8B4513 100%);
+            color: white;
+            margin-top: 20px;
+          }
+
+          #send:hover {
+            background: linear-gradient(135deg, #8B4513 0%, #572a02 100%);
+            transform: translateY(-1px);
+          }
+
+          #send:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+          }
+
+          #download_chat {
+            background: #01473f;
+            color: white;
+            margin-top: 15px;
+          }
+
+          #download_chat:hover {
+            background: #025d52;
+            transform: translateY(-1px);
+          }
+
+          #help {
+            background: #ff5722;
+            color: white;
+            margin-top: 20px;
+          }
+
+          #help:hover {
+            background: #f4511e;
+            transform: translateY(-1px);
+          }
+
+          #chat_history {
+            max-height: 750px;
+            overflow-y: auto;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            background: #f8f9fa;
+            scrollbar-width: thin;
+            scrollbar-color: #572a02 #f0f4f8;
+          }
+
+          #chat_history::-webkit-scrollbar {
+            width: 8px;
+          }
+
+          #chat_history::-webkit-scrollbar-track {
+            background: #f0f4f8;
+          }
+
+          #chat_history::-webkit-scrollbar-thumb {
+            background-color: #572a02;
+            border-radius: 4px;
+          }
+
+          .footer {
+            background: linear-gradient(135deg, #01473f 0%, #025d52 100%);
+            color: #e0e0e0;
             text-align: center;
             padding: 20px;
-            color: #007bff;
+            font-size: 14px;
+            margin-top: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(1, 71, 63, 0.2);
           }
+
+          .footer a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+          }
+
+          .footer a:hover {
+            opacity: 0.8;
+          }
+
+          #loading-spinner {
+            padding: 30px;
+            color: #572a02;
+            text-align: center;
+          }
+
           .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #007bff;
+            border: 3px solid rgba(87, 42, 2, 0.1);
+            border-top: 3px solid #572a02;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             animation: spin 1s linear infinite;
             margin: 0 auto;
           }
+
+          @keyframes rotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+          }
+
           @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+          }
+
+          @media (max-width: 768px) {
+            .chat-history-wrapper {
+              margin-left: 0;
+              margin-top: 20px;
+            }
+            
+            .title-panel {
+              font-size: 24px;
+              padding: 20px;
+            }
+
+            .sidebar-panel,
+            .chat-history-wrapper {
+              padding: 20px;
+            }
+          }
+
+          /* Add fancy hover effect to inputs */
+          .form-control:hover {
+            border-color: #8B4513;
+          }
+
+          /* Style the select dropdowns */
+          select.form-control {
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,<svg width=\"24\" height=\"24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M7 10l5 5 5-5z\" fill=\"%23572a02\"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            padding-right: 32px;
+          }
+
+          /* Add section headers */
+          .section-header {
+            font-size: 18px;
+            font-weight: 600;
+            color: #572a02;
+            margin: 24px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(87, 42, 2, 0.1);
           }"
         )
       ),
@@ -107,14 +299,10 @@ create_chat_ui <- function() {
              });
 
              $('#send').on('click', function() {
-               // Disable send button
                $('#send').prop('disabled', true);
-
-               // Show loading spinner
                $('#loading-spinner').html('<div class=\"spinner\"></div><p>Generating response...</p>').show();
              });
 
-             // Shiny binding to hide spinner when response is ready
              Shiny.addCustomMessageHandler('hideLoading', function(message) {
                $('#loading-spinner').hide();
                $('#send').prop('disabled', false);
@@ -123,13 +311,17 @@ create_chat_ui <- function() {
         )
       )
     ),
-    shiny::div(class = "title-panel", "Shiny Ollama - Chat with LLMs offline on local with Ollama"),
+    shiny::div(class = "title-panel", 
+      shiny::div(class = "gradient-container", shiny::div(class = "gradient")),
+      "Shiny Ollama - Chat with LLMs offline on local with Ollama"
+    ),
     shiny::sidebarLayout(
       shiny::sidebarPanel(
         class = "sidebar-panel",
-        shiny::h4(shiny::strong("Chat Settings")),
+        shiny::div(class = "section-header", "Chat Settings"),
         shiny::selectInput("model", "Select Model", choices = NULL),
         shiny::textAreaInput("message", "Type your message", rows = 4, placeholder = "Enter your message here..."),
+        shiny::div(class = "section-header", "Model Parameters"),
         shiny::tags$div(
           title = "Controls response randomness: 0.0 indicates Deterministic, 0.7 indicates Balanced creativity, 1.0 indicates More diverse/random",
           shiny::numericInput("temperature", "Temperature", value = 0.7, min = 0, max = 1, step = 0.1)
@@ -152,14 +344,18 @@ create_chat_ui <- function() {
         ),
         shiny::actionButton("send", "Send"),
         shiny::div(id = "loading-spinner"),
-        shiny::hr(),
+        shiny::div(class = "section-header", "Export Options"),
         shiny::selectInput("download_format", "Download Format", choices = c("HTML", "CSV")),
-        shiny::downloadButton("download_chat", "Download Chat History")
+        shiny::downloadButton("download_chat", "Download Chat History"),
+        shiny::hr(),
+        shiny::actionButton("help", "Need help? Click here!", onclick = "window.open('https://ineelhere.github.io/shiny.ollama/', '_blank')")
       ),
-      shiny::div(
-        class = "chat-history-wrapper",
-        shiny::h4(shiny::strong("Chat History")),
-        shiny::uiOutput("chat_history")
+      shiny::mainPanel(
+        shiny::div(
+          class = "chat-history-wrapper",
+          shiny::div(class = "section-header", "Chat History"),
+          shiny::uiOutput("chat_history")
+        )
       )
     ),
     shiny::div(

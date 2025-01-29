@@ -34,17 +34,36 @@ send_ollama_message <- function(message, model, temperature, num_ctx, top_k, top
         top_k = top_k,
         top_p = top_p,
         system = system,
-        messages = messages
+        messages = messages,
+        stream = TRUE  # Enables streaming response
       ), auto_unbox = TRUE),
       encode = "json"
     )
 
-    if (httr::status_code(response) == 200) {
-      content <- jsonlite::fromJSON(rawToChar(response$content))
-      list(success = TRUE, response = content$response)
-    } else {
-      list(success = FALSE, error = "Error: Unable to fetch response.")
+    if (httr::status_code(response) != 200) {
+      return(list(success = FALSE, error = sprintf("Error: API returned status %d", httr::status_code(response))))
     }
+
+    # Read the streaming response as plain text
+    raw_content <- httr::content(response, as = "text", encoding = "UTF-8")
+    json_lines <- unlist(strsplit(raw_content, "\n"))  # Split response into lines
+    completions <- c()
+
+    for (line in json_lines) {
+      if (nzchar(line)) {  # Ignore empty lines
+        parsed <- jsonlite::fromJSON(line, simplifyVector = TRUE)
+        if ("response" %in% names(parsed)) {
+          completions <- c(completions, parsed$response)
+        }
+      }
+    }
+
+    if (length(completions) == 0) {
+      return(list(success = FALSE, error = "Error: No valid response received."))
+    }
+
+    # Combine all response parts into a single response
+    list(success = TRUE, response = paste(completions, collapse = " "))
   }, error = function(e) {
     list(success = FALSE, error = sprintf("Error: %s", e$message))
   })

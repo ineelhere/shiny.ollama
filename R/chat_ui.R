@@ -128,12 +128,32 @@ create_chat_ui <- function() {
       shiny::sidebarPanel(
         class = "sidebar-panel",
         shiny::h4(shiny::strong("Chat Settings")),
-        shiny::selectInput("model", "Select Model:", choices = NULL),
-        shiny::textAreaInput("message", "Type your message:", rows = 4, placeholder = "Enter your message here..."),
+        shiny::selectInput("model", "Select Model", choices = NULL),
+        shiny::textAreaInput("message", "Type your message", rows = 4, placeholder = "Enter your message here..."),
+        shiny::tags$div(
+          title = "Controls response randomness: 0.0 → Deterministic, 0.7 → Balanced creativity, 1.0 → More diverse/random",
+          shiny::numericInput("temperature", "Temperature", value = 0.7, min = 0, max = 1, step = 0.1)
+        ),
+        shiny::tags$div(
+          title = "Maximum context window size (tokens to remember)",
+          shiny::numericInput("num_ctx", "Context Window Size", value = 1024, min = 1)
+        ),
+        shiny::tags$div(
+          title = "Limits highest-probability tokens at each step",
+          shiny::numericInput("top_k", "Top K", value = 50, min = 1)
+        ),
+        shiny::tags$div(
+          title = "Probability mass for token selection. Lower values make responses more focused",
+          shiny::numericInput("top_p", "Top P", value = 0.9, min = 0, max = 1, step = 0.1)
+        ),
+        shiny::tags$div(
+          title = "Provides system instructions to guide model behavior",
+          shiny::textInput("system", "System Instructions", value = "")
+        ),
         shiny::actionButton("send", "Send"),
         shiny::div(id = "loading-spinner"),
         shiny::hr(),
-        shiny::selectInput("download_format", "Download Format:", choices = c("HTML", "CSV")),
+        shiny::selectInput("download_format", "Download Format", choices = c("HTML", "CSV")),
         shiny::downloadButton("download_chat", "Download Chat History")
       ),
       shiny::div(

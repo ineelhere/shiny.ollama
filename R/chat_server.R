@@ -19,7 +19,16 @@ create_chat_server <- function() {
       user_msg <- format_message_md("User", input$message)
       messages(c(current_messages, user_msg))
 
-      result <- send_ollama_message(input$message, input$model)
+      result <- send_ollama_message(
+        message = input$message,
+        model = input$model,
+        temperature = input$temperature,
+        num_ctx = input$num_ctx,
+        top_k = input$top_k,
+        top_p = input$top_p,
+        system = input$system,
+        messages = current_messages
+      )
 
       bot_msg <- format_message_md(input$model, ifelse(result$success, result$response, result$error))
       messages(c(current_messages, user_msg, bot_msg))

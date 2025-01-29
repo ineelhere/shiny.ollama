@@ -91,16 +91,12 @@ create_chat_ui <- function() {
             cursor: pointer;
             width: 100%;
             border: none;
+            background: #014f86;
+            color: #ffffff;
           }
 
-          #send {
-            background: linear-gradient(135deg, #572a02 0%, #8B4513 100%);
-            color: white;
-            margin-top: 20px;
-          }
-
-          #send:hover {
-            background: linear-gradient(135deg, #8B4513 0%, #572a02 100%);
+          #send:hover, #download_chat:hover {
+            background: #013a63;
             transform: translateY(-1px);
           }
 
@@ -110,19 +106,8 @@ create_chat_ui <- function() {
             transform: none;
           }
 
-          #download_chat {
-            background: #01473f;
-            color: white;
-            margin-top: 15px;
-          }
-
-          #download_chat:hover {
-            background: #025d52;
-            transform: translateY(-1px);
-          }
-
           #chat_history {
-            max-height: 750px;
+            max-height: 880px;
             overflow-y: auto;
             padding: 20px;
             border: 1px solid #e0e0e0;
@@ -295,7 +280,7 @@ create_chat_ui <- function() {
         shiny::div(id = "loading-spinner"),
         shiny::div(class = "section-header", "Export Options"),
         shiny::selectInput("download_format", "Download Format", choices = c("HTML", "CSV")),
-        shiny::downloadButton("download_chat", "Download Chat History")
+        shiny::downloadButton("download_chat", "Chat History")
         ),
       shiny::mainPanel(
         shiny::div(

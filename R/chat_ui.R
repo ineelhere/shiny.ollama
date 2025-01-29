@@ -26,55 +26,21 @@ create_chat_ui <- function() {
           }
 
           .title-panel {
-            background: linear-gradient(135deg, #2c1810 0%, #572a02 100%);
+            background: linear-gradient(88deg, #022a42 0%, #1f4e0e 100%);
             color: white;
             padding: 30px;
             text-align: center;
-            font-size: 28px;
+            font-size: 25px;
             font-weight: 700;
             border-radius: 16px;
             box-shadow: 0 8px 24px rgba(87, 42, 2, 0.2);
-            margin: 20px 0 40px;
+            margin: 20px 0 20px;
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
           }
 
-          .gradient-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            border-radius: inherit;
-            z-index: -2;
-            filter: blur(10px);
-            transition: all 0.3s;
-            opacity: 0.7;
-          }
-
-          .gradient {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 200%;
-            height: 200%;
-            border-radius: 50%;
-            transition: all 0.3s;
-            background-image: linear-gradient(
-              90deg,
-              hsl(226, 89%, 70%),
-              hsl(271, 89%, 70%),
-              hsl(316, 89%, 70%),
-              hsl(1, 89%, 70%),
-              hsl(46, 89%, 70%)
-            );
-            animation: rotate 3s ease-in-out infinite;
-          }
-
-          .title-panel:hover .gradient-container {
+          .title-panel:hover {
             transform: scale(0.98);
           }
 
@@ -82,7 +48,7 @@ create_chat_ui <- function() {
             background-color: white;
             padding: 30px;
             border-radius: 16px;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            box-shadow: 20px -16px 24px rgb(6 33 90 / 8%);
             margin-bottom: 20px;
           }
 
@@ -90,7 +56,7 @@ create_chat_ui <- function() {
             background-color: white;
             padding: 30px;
             border-radius: 16px;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            box-shadow: 20px -16px 24px rgb(6 33 90 / 8%);
             margin-left: 20px;
           }
 
@@ -114,7 +80,7 @@ create_chat_ui <- function() {
             color: #333;
           }
 
-          #send, #download_chat, #help {
+          #send, #download_chat {
             font-weight: 600;
             padding: 12px 24px;
             border-radius: 8px;
@@ -155,17 +121,6 @@ create_chat_ui <- function() {
             transform: translateY(-1px);
           }
 
-          #help {
-            background: #ff5722;
-            color: white;
-            margin-top: 20px;
-          }
-
-          #help:hover {
-            background: #f4511e;
-            transform: translateY(-1px);
-          }
-
           #chat_history {
             max-height: 750px;
             overflow-y: auto;
@@ -191,7 +146,7 @@ create_chat_ui <- function() {
           }
 
           .footer {
-            background: linear-gradient(135deg, #01473f 0%, #025d52 100%);
+            background: linear-gradient(128deg, #13435d 0%, #5a1616 100%);
             color: #e0e0e0;
             text-align: center;
             padding: 20px;
@@ -226,11 +181,6 @@ create_chat_ui <- function() {
             height: 30px;
             animation: spin 1s linear infinite;
             margin: 0 auto;
-          }
-
-          @keyframes rotate {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
           }
 
           @keyframes spin {
@@ -273,7 +223,7 @@ create_chat_ui <- function() {
           .section-header {
             font-size: 18px;
             font-weight: 600;
-            color: #572a02;
+            color: linear-gradient(88deg, #022a42 0%, #1f4e0e 100%);
             margin: 24px 0 16px;
             padding-bottom: 8px;
             border-bottom: 2px solid rgba(87, 42, 2, 0.1);
@@ -312,7 +262,6 @@ create_chat_ui <- function() {
       )
     ),
     shiny::div(class = "title-panel", 
-      shiny::div(class = "gradient-container", shiny::div(class = "gradient")),
       "Shiny Ollama - Chat with LLMs offline on local with Ollama"
     ),
     shiny::sidebarLayout(
@@ -320,7 +269,7 @@ create_chat_ui <- function() {
         class = "sidebar-panel",
         shiny::div(class = "section-header", "Chat Settings"),
         shiny::selectInput("model", "Select Model", choices = NULL),
-        shiny::textAreaInput("message", "Type your message", rows = 4, placeholder = "Enter your message here..."),
+        shiny::textAreaInput("message", "Type your message", rows = 2, placeholder = "Enter your message here..."),
         shiny::div(class = "section-header", "Model Parameters"),
         shiny::tags$div(
           title = "Controls response randomness: 0.0 indicates Deterministic, 0.7 indicates Balanced creativity, 1.0 indicates More diverse/random",
@@ -346,10 +295,8 @@ create_chat_ui <- function() {
         shiny::div(id = "loading-spinner"),
         shiny::div(class = "section-header", "Export Options"),
         shiny::selectInput("download_format", "Download Format", choices = c("HTML", "CSV")),
-        shiny::downloadButton("download_chat", "Download Chat History"),
-        shiny::hr(),
-        shiny::actionButton("help", "Need help? Click here!", onclick = "window.open('https://ineelhere.github.io/shiny.ollama/', '_blank')")
-      ),
+        shiny::downloadButton("download_chat", "Download Chat History")
+        ),
       shiny::mainPanel(
         shiny::div(
           class = "chat-history-wrapper",
@@ -364,8 +311,8 @@ create_chat_ui <- function() {
         "<code>shiny.ollama</code> - R package built with ",
         "<a href='https://shiny.rstudio.com/' target='_blank'>Shiny</a> & ",
         "<a href='https://ollama.com/' target='_blank'>Ollama</a> | ",
-        "Source codes available on ",
-        "<a href='https://github.com/ineelhere/shiny.ollama' target='_blank'>GitHub</a>"
+        "<a href='https://github.com/ineelhere/shiny.ollama' target='_blank'>Source Codes</a> ",
+        "| <a href='https://ineelhere.github.io/shiny.ollama/' target='_blank'>Documentation</a>",
       )
     )
   )

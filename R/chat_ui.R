@@ -131,7 +131,7 @@ create_chat_ui <- function() {
         shiny::selectInput("model", "Select Model", choices = NULL),
         shiny::textAreaInput("message", "Type your message", rows = 4, placeholder = "Enter your message here..."),
         shiny::tags$div(
-          title = "Controls response randomness: 0.0 → Deterministic, 0.7 → Balanced creativity, 1.0 → More diverse/random",
+          title = "Controls response randomness: 0.0 indicates Deterministic, 0.7 indicates Balanced creativity, 1.0 indicates More diverse/random",
           shiny::numericInput("temperature", "Temperature", value = 0.7, min = 0, max = 1, step = 0.1)
         ),
         shiny::tags$div(

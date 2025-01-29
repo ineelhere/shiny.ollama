@@ -247,15 +247,15 @@ create_chat_ui <- function() {
       )
     ),
     shiny::div(class = "title-panel", 
-      "Shiny Ollama - Chat with LLMs offline on local with Ollama"
+      "Shiny Ollama - Chat with LLMs offline on local with Ollama \U0001F916"
     ),
     shiny::sidebarLayout(
       shiny::sidebarPanel(
         class = "sidebar-panel",
-        shiny::div(class = "section-header", "Chat Settings"),
+        shiny::div(class = "section-header", "Chat Settings \u2699\ufe0f"),
         shiny::selectInput("model", "Select Model", choices = NULL),
         shiny::textAreaInput("message", "Type your message", rows = 2, placeholder = "Enter your message here..."),
-        shiny::div(class = "section-header", "Model Parameters"),
+        shiny::div(class = "section-header", "Model Parameters \U0001F9E0"),
         shiny::tags$div(
           title = "Controls response randomness: 0.0 indicates Deterministic, 0.7 indicates Balanced creativity, 1.0 indicates More diverse/random",
           shiny::numericInput("temperature", "Temperature", value = 0.7, min = 0, max = 1, step = 0.1)
@@ -278,14 +278,14 @@ create_chat_ui <- function() {
         ),
         shiny::actionButton("send", "Send"),
         shiny::div(id = "loading-spinner"),
-        shiny::div(class = "section-header", "Export Options"),
+        shiny::div(class = "section-header", "Export Options \U0001F4C1"),
         shiny::selectInput("download_format", "Download Format", choices = c("HTML", "CSV")),
         shiny::downloadButton("download_chat", "Chat History")
         ),
       shiny::mainPanel(
         shiny::div(
           class = "chat-history-wrapper",
-          shiny::div(class = "section-header", "Chat History"),
+          shiny::div(class = "section-header", "Chat Area \U0001F5E8\ufe0f"),
           shiny::uiOutput("chat_history")
         )
       )

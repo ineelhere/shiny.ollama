@@ -31,14 +31,6 @@ install.packages("devtools")
 devtools::install_github("ineelhere/shiny.ollama")
 ```
 
-##  Features  
--  **Fully Offline**: No internet required – complete privacy
--  **Model Selection**: Easily choose from available LLM models
--  **Message Input**: Engage in conversations with AI
--  **Save & Download Chats**: Export your chat history
--  **User-Friendly Interface**: Powered by R Shiny
--  **Customizable Settings**: Adjust parameters like `temperature`, `context window size`, `top K`, `top P`, and `system instructions`
-
 ##  Quick Start  
 Launch the Shiny app in R with:
 ```r
@@ -47,6 +39,14 @@ library(shiny.ollama)
 # Start the application
 shiny.ollama::run_app()
 ```
+
+##  Features  
+-  **Fully Offline**: No internet required – complete privacy
+-  **Model Selection**: Easily choose from available LLM models
+-  **Message Input**: Engage in conversations with AI
+-  **Save & Download Chats**: Export your chat history
+-  **User-Friendly Interface**: Powered by R Shiny
+-  **Customizable Settings**: Adjust parameters like `temperature`, `context window size`, `top K`, `top P`, and `system instructions`
 
 ##  How to Install Ollama  
 To use this package, install Ollama first:  

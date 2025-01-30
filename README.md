@@ -18,8 +18,7 @@
 
 `CRAN release`
 
-![](https://raw.githubusercontent.com/ineelhere/shiny.ollama/refs/heads/main/shiny_ollama_ui.png)
-
+![](https://raw.githubusercontent.com/ineelhere/shiny.ollama/refs/heads/cran-0.1.1/shiny_ollama_ui.png)
 
 ## ⚠️ Disclaimer  
 **Important:** `shiny.ollama` requires Ollama to be installed on your system. Without it, this package will not function. Follow the [Installation Guide](#-how-to-install-ollama) below to set up Ollama first.  

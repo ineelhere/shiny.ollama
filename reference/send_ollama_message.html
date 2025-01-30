@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">shiny.ollama</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,16 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">send_ollama_message</span><span class="op">(</span><span class="va">message</span>, <span class="va">model</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">send_ollama_message</span><span class="op">(</span></span>
+<span>  <span class="va">message</span>,</span>
+<span>  <span class="va">model</span>,</span>
+<span>  <span class="va">temperature</span>,</span>
+<span>  <span class="va">num_ctx</span>,</span>
+<span>  <span class="va">top_k</span>,</span>
+<span>  <span class="va">top_p</span>,</span>
+<span>  <span class="va">system</span>,</span>
+<span>  <span class="va">messages</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -57,6 +66,30 @@
 
 <dt id="arg-model">model<a class="anchor" aria-label="anchor" href="#arg-model"></a></dt>
 <dd><p>Character string specifying the model name</p></dd>
+
+
+<dt id="arg-temperature">temperature<a class="anchor" aria-label="anchor" href="#arg-temperature"></a></dt>
+<dd><p>Numeric value specifying the temperature</p></dd>
+
+
+<dt id="arg-num-ctx">num_ctx<a class="anchor" aria-label="anchor" href="#arg-num-ctx"></a></dt>
+<dd><p>Integer value specifying the number of contexts</p></dd>
+
+
+<dt id="arg-top-k">top_k<a class="anchor" aria-label="anchor" href="#arg-top-k"></a></dt>
+<dd><p>Integer value specifying the top K</p></dd>
+
+
+<dt id="arg-top-p">top_p<a class="anchor" aria-label="anchor" href="#arg-top-p"></a></dt>
+<dd><p>Numeric value specifying the top P</p></dd>
+
+
+<dt id="arg-system">system<a class="anchor" aria-label="anchor" href="#arg-system"></a></dt>
+<dd><p>Character string specifying the system</p></dd>
+
+
+<dt id="arg-messages">messages<a class="anchor" aria-label="anchor" href="#arg-messages"></a></dt>
+<dd><p>List of messages</p></dd>
 
 </dl></div>
     <div class="section level2">

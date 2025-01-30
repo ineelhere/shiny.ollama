@@ -11,8 +11,8 @@
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="R shiny Interface for Chatting with Large Language Models Offline on Local with ollama">
-<meta name="description" content="Chat with large language models on your machine without internet with complete privacy via ollama, powered by R shiny interface. For more information on ollama, visit &lt;https://ollama.com&gt;.">
-<meta property="og:description" content="Chat with large language models on your machine without internet with complete privacy via ollama, powered by R shiny interface. For more information on ollama, visit &lt;https://ollama.com&gt;.">
+<meta name="description" content="Chat with large language models like deepseek-r1, nemotron, llama, qwen and many more on your machine without internet with complete privacy via ollama, powered by R shiny interface. For more information on ollama, visit &lt;https://ollama.com&gt;.">
+<meta property="og:description" content="Chat with large language models like deepseek-r1, nemotron, llama, qwen and many more on your machine without internet with complete privacy via ollama, powered by R shiny interface. For more information on ollama, visit &lt;https://ollama.com&gt;.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">shiny.ollama</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,10 +57,13 @@
 <div class="page-header"><h1 id="shinyollama">
 <code>shiny.ollama</code><a class="anchor" aria-label="anchor" href="#shinyollama"></a>
 </h1></div>
-<p><a href="https://cran.r-project.org/package=shiny.ollama" class="external-link"><img src="https://img.shields.io/cran/v/shiny.ollama" alt="CRAN Version"></a> <a href="https://github.com/ineelhere/shiny.ollama" class="external-link"><img src="https://img.shields.io/badge/dev-v0.1.1-blue" alt="Dev Version"></a></p>
+<p><a href="https://cran.r-project.org/package=shiny.ollama" class="external-link"><img src="https://img.shields.io/cran/v/shiny.ollama" alt="CRAN Version"></a> <a href="https://github.com/ineelhere/shiny.ollama" class="external-link"><img src="https://img.shields.io/badge/dev-v0.1.2-blue" alt="Dev Version"></a></p>
 <p><strong>R Shiny Interface for Chatting with LLMs Offline via Ollama</strong></p>
 <p><em>Experience seamless, private, and offline AI conversations right on your machine! <code>shiny.ollama</code> provides a user-friendly R Shiny interface to interact with LLMs locally, powered by <a href="https://ollama.com" class="external-link">Ollama</a>.</em></p>
 <p><a href="https://www.indraneelchakraborty.com/shiny.ollama/"><img src="https://img.shields.io/badge/pkgdown-documentation-red.svg" alt="pkgdown"></a> <a href="https://hits.sh/github.com/ineelhere/shiny.ollama/" class="external-link"><img src="https://hits.sh/github.com/ineelhere/shiny.ollama.svg?label=Visitors&amp;style=flat-square" alt="Visitors"></a> <a href="https://CRAN.R-project.org/package=shiny.ollama" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/shiny.ollama" alt="CRAN downloads"></a> <img src="https://github.com/ineelhere/shiny.ollama/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></p>
+<p><code>Development Version</code></p>
+<p><img src="https://raw.githubusercontent.com/ineelhere/shiny.ollama/refs/heads/main/shiny_ollama_ui_0_1_2.png"></p>
+<p><code>CRAN release</code></p>
 <p><img src="https://raw.githubusercontent.com/ineelhere/shiny.ollama/refs/heads/main/shiny_ollama_ui.png"></p>
 <div class="section level2">
 <h2 id="id_️-disclaimer">⚠️ Disclaimer<a class="anchor" aria-label="anchor" href="#id_%EF%B8%8F-disclaimer"></a>
@@ -68,16 +71,40 @@
 <p><strong>Important:</strong> <code>shiny.ollama</code> requires Ollama to be installed on your system. Without it, this package will not function. Follow the <a href="#id_-how-to-install-ollama">Installation Guide</a> below to set up Ollama first.</p>
 </div>
 <div class="section level2">
+<h2 id="version-information">Version Information<a class="anchor" aria-label="anchor" href="#version-information"></a>
+</h2>
+<ul>
+<li>
+<strong><code>CRAN</code> Version (<code>0.1.1</code>)</strong>:
+<ul>
+<li>Core functionality for offline LLM interaction</li>
+<li>Basic model selection and chat interface</li>
+<li>Chat history export capabilities</li>
+</ul>
+</li>
+<li>
+<strong><code>Development</code> Version (<code>0.1.2</code>)</strong>:
+<ul>
+<li>All features from <code>0.1.1</code>
+</li>
+<li>Better UI/UX</li>
+<li>Advanced parameter customization</li>
+<li>Enhanced user control over model behavior</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <div class="section level3">
-<h3 id="from-cran-recommended">From CRAN (Recommended)<a class="anchor" aria-label="anchor" href="#from-cran-recommended"></a>
+<h3 id="from-cran-stable-version---011">From CRAN (Stable Version - <code>0.1.1</code>)<a class="anchor" aria-label="anchor" href="#from-cran-stable-version---011"></a>
 </h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"shiny.ollama"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="from-github-latest-development-version">From GitHub (Latest Development Version)<a class="anchor" aria-label="anchor" href="#from-github-latest-development-version"></a>
+<h3 id="from-github-latest-development-version---012">From GitHub (Latest Development Version - <code>0.1.2</code>)<a class="anchor" aria-label="anchor" href="#from-github-latest-development-version---012"></a>
 </h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Install devtools if not already installed</span></span>
@@ -87,8 +114,21 @@
 </div>
 </div>
 <div class="section level2">
+<h2 id="quick-start">Quick Start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
+</h2>
+<p>Launch the Shiny app in R with:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.indraneelchakraborty.com/shiny.ollama/">shiny.ollama</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Start the application</span></span>
+<span><span class="fu">shiny.ollama</span><span class="fu">::</span><span class="fu"><a href="reference/run_app.html">run_app</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
 <h2 id="features">Features<a class="anchor" aria-label="anchor" href="#features"></a>
 </h2>
+<div class="section level3">
+<h3 id="core-features-all-versions">Core Features (All Versions)<a class="anchor" aria-label="anchor" href="#core-features-all-versions"></a>
+</h3>
 <ul>
 <li>
 <strong>Fully Offline</strong>: No internet required – complete privacy</li>
@@ -102,29 +142,25 @@
 <strong>User-Friendly Interface</strong>: Powered by R Shiny</li>
 </ul>
 </div>
-<div class="section level2">
-<h2 id="quick-start">Quick Start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
-</h2>
-<p>Launch the Shiny app in R with:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.indraneelchakraborty.com/shiny.ollama/">shiny.ollama</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Start the application</span></span>
-<span><span class="fu">shiny.ollama</span><span class="fu">::</span><span class="fu"><a href="reference/run_app.html">run_app</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="advanced-features-development-version-012">Advanced Features (Development Version <code>0.1.2</code>)<a class="anchor" aria-label="anchor" href="#advanced-features-development-version-012"></a>
+</h3>
+<p>Customize your LLM interaction with adjustable parameters: - Temperature control - Context window size - Top K sampling - Top P sampling - System instructions customization</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="how-to-install-ollama">How to Install Ollama<a class="anchor" aria-label="anchor" href="#how-to-install-ollama"></a>
 </h2>
 <p>To use this package, install Ollama first:</p>
 <ol style="list-style-type: decimal">
-<li>Download Ollama from <a href="https://ollama.com" class="external-link">here</a> (Mac, Windows, Linux supported).</li>
-<li>Install it by following the provided instructions.</li>
+<li>Download Ollama from <a href="https://ollama.com" class="external-link">here</a> (Mac, Windows, Linux supported)</li>
+<li>Install it by following the provided instructions</li>
 <li>Verify your installation:</li>
 </ol>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">ollama</span> <span class="at">--version</span></span></code></pre></div>
-<p>If successful, the version number will be displayed.</p>
+<p>If successful, the version number will be displayed</p>
 <ol start="4" style="list-style-type: decimal">
-<li>Pull a model (e.g., <a href="https://ollama.com/library/deepseek-r1" class="external-link">deepseek-r1</a>) to get started.</li>
+<li>Pull a model (e.g., <a href="https://ollama.com/library/deepseek-r1" class="external-link">deepseek-r1</a>) to get started</li>
 </ol>
 </div>
 <div class="section level2">
@@ -140,7 +176,7 @@
 <ul class="list-unstyled">
 <li><a href="https://cloud.r-project.org/package=shiny.ollama" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/ineelhere/shiny.ollama/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/ineelhere/shiny.ollama/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/ineelhere/shiny.ollama/issues/" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 

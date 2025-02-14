@@ -3,6 +3,11 @@
 #' @keywords internal
 create_chat_server <- function() {
   function(input, output, session) {
+
+    output$ollama_status <- shiny::renderUI({
+      shiny::markdown(format_message_md("System Status", check_ollama()))
+    })
+
     messages <- shiny::reactiveVal(list())
 
     # Update model choices
@@ -32,7 +37,7 @@ create_chat_server <- function() {
 
       bot_msg <- format_message_md(input$model, ifelse(result$success, result$response, result$error))
       messages(c(current_messages, user_msg, bot_msg))
-      
+
       shiny::updateTextAreaInput(session, "message", value = "")
     })
 
@@ -51,7 +56,7 @@ create_chat_server <- function() {
       content = function(file) {
         chat_data <- messages()
         formatted_data <- format_chat_history(chat_data, format = input$download_format)
-        
+
         if (input$download_format == "HTML") {
           writeLines(formatted_data, file)
         } else {

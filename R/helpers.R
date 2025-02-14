@@ -1,15 +1,39 @@
+#' Check if Ollama is running
+#'
+#' This function checks whether the Ollama server is running at `http://localhost:11434/`.
+#' It sends a request to the URL and determines if the server is reachable.
+#'
+#' @return A character string: `"ollama is running"` if the server is accessible,
+#'         otherwise `"ollama is not running"`.
+#' @export
+check_ollama <- function() {
+  url <- "http://localhost:11434/"
+  response <- try(httr::GET(url), silent = TRUE)
+
+  if (inherits(response, "try-error") || httr::status_code(response) >= 400) {
+    return("Ollama is not running.")
+  }
+
+  return("Ollama is running!")
+}
+
 #' Format a message as markdown
 #'
-#' This helper function formats a message with a specified role 
-#' (User, Assistant, or System) into a markdown-styled string.
+#' This helper function formats a message with a specified role
+#' (e.g., "User", "Assistant", "System Status") into a markdown-styled string.
+#' If the role is "System Status", it includes the status of the Ollama server.
 #'
-#' @param role A character string specifying the role (e.g., "User", "Assistant", "System").
+#' @param role A character string specifying the role (e.g., "User", "Assistant", "System Status").
 #' @param content A character string containing the message content.
 #'
 #' @return A character string formatted as markdown.
 #' @export
 format_message_md <- function(role, content) {
-  sprintf('#### `%s`\n\n%s\n\n', role, content)
+  if (role == "System Status")  {
+    return(sprintf('#### `%s`- %s\n\n', role, check_ollama()))
+  } else {
+    return(sprintf('#### `%s`\n\n%s\n\n', role, content))
+  }
 }
 
 #' Parse a markdown-formatted message

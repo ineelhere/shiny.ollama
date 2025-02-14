@@ -178,7 +178,7 @@ create_chat_ui <- function() {
               margin-left: 0;
               margin-top: 20px;
             }
-            
+
             .title-panel {
               font-size: 24px;
               padding: 20px;
@@ -246,7 +246,7 @@ create_chat_ui <- function() {
         )
       )
     ),
-    shiny::div(class = "title-panel", 
+    shiny::div(class = "title-panel",
       "Shiny Ollama - Chat with LLMs offline on local with Ollama \U0001F916"
     ),
     shiny::sidebarLayout(
@@ -285,6 +285,7 @@ create_chat_ui <- function() {
       shiny::mainPanel(
         shiny::div(
           class = "chat-history-wrapper",
+          shiny::uiOutput("ollama_status"),
           shiny::div(class = "section-header", "Chat Area \U0001F5E8\ufe0f"),
           shiny::uiOutput("chat_history")
         )

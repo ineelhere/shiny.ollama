@@ -7,7 +7,7 @@
 format_message_md(role, content)
 }
 \arguments{
-\item{role}{A character string specifying the role (e.g., "User", "Assistant", "System").}
+\item{role}{A character string specifying the role (e.g., "User", "Assistant", "System Status").}
 
 \item{content}{A character string containing the message content.}
 }
@@ -15,6 +15,7 @@ format_message_md(role, content)
 A character string formatted as markdown.
 }
 \description{
-This helper function formats a message with a specified role 
-(User, Assistant, or System) into a markdown-styled string.
+This helper function formats a message with a specified role
+(e.g., "User", "Assistant", "System Status") into a markdown-styled string.
+If the role is "System Status", it includes the status of the Ollama server.
 }

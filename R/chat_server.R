@@ -51,7 +51,7 @@ create_chat_server <- function() {
     # Handle downloads
     output$download_chat <- shiny::downloadHandler(
       filename = function() {
-        paste("chat_history", format(Sys.time(), "%Y%m%d_%H%M%S"), ".", tolower(input$download_format), sep = "")
+        paste("chat_history_", format(Sys.time(), "%Y%m%d_%H%M%S"), ".", tolower(input$download_format), sep = "")
       },
       content = function(file) {
         chat_data <- messages()
